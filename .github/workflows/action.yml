@@ -26,6 +26,6 @@ jobs:
           
       - name: make file
         run: |
-          echo ${{ env.BASE_FILE_PATH }}
+          cat ${{ env.BASE_FILE_PATH }}
           cat ${{ env.BASE_FILE_PATH }} > ${{ env.PO_FILE_PATH }}
-          echo ${{ env.PO_FILE_PATH }}
+          cat ${{ env.PO_FILE_PATH }}
