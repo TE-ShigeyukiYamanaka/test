@@ -11,11 +11,12 @@ on:
   workflow_dispatch:
 
 env:
+  ARTIFACT_NAME: 'output_test_file'
   BASE_FILE_PATH: './test1.txt'
   PO_FILE_PATH: './test2.txt'
   
 jobs:
-  translate:
+  test:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -23,9 +24,16 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          
+
       - name: make file
         run: |
-          cat ${{ env.BASE_FILE_PATH }}
-          cat ${{ env.BASE_FILE_PATH }} > ${{ env.PO_FILE_PATH }}
-          cat ${{ env.PO_FILE_PATH }}
+          mkdir ./output_test_file
+          cat ${{ env.BASE_FILE_PATH }} > ./output_test_file/test2.txt
+
+      - name: archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: output_test_file
+          retention-days: 1
+        if: ${{ success() }}
