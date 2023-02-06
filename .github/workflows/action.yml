@@ -12,7 +12,7 @@ on:
 
 env:
   ARTIFACT_NAME: 'output_test_file'
-  BASE_FILE_PATH: './test1.txt'
+  BASE_FILE_PATH: './sample.adoc'
   PO_FILE_PATH: './test2.txt'
   
 jobs:
@@ -25,10 +25,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: make file
+      - name: setup po4a
         run: |
-          mkdir ./output_test_file
-          cat ${{ env.BASE_FILE_PATH }} > ./output_test_file/test2.txt
+          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends po4a
+          sudo apt install libunicode-linebreak-perl
+
+      - name: make updatepo file
+        run: |
+          mkdir ./output_updatepo_file
+          po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ./output_updatepo_file/sample.po
 
       - name: archive artifacts
         uses: actions/upload-artifact@v3
