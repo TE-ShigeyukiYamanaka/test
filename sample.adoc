@@ -1,0 +1,6 @@
+== SSD接続方法
+
+SSDを以下の位置に設置。
+テストコメント
+
+image::NX215B_inside.png[SSD接続方法, width=19000 ]
