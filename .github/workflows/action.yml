@@ -32,7 +32,7 @@ jobs:
 
       - name: make updatepo file
         run: |
-          mkdir ./output_updatepo_file
+          mkdir ./output_test_file
           po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ./output_test_file/sample.po
 
       - name: archive artifacts
