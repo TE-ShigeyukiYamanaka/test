@@ -20,15 +20,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: setup po4a
-        run: |
-          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends po4a
-          sudo apt install libunicode-linebreak-perl
-
       - name: make file
         run: |
+          echo ${{ env.BASE_FILE_PATH }}
           cat ${{ env.BASE_FILE_PATH }} > ${{ env.PO_FILE_PATH }}
+          echo ${{ env.PO_FILE_PATH }}
