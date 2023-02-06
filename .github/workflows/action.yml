@@ -1,0 +1,34 @@
+# This workflow is for Make Document Sample.
+
+name: Testworkflows
+
+# Controls when the action will run.
+on:
+  push:
+    branches: [ 'test/20230206' ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  BASE_FILE_PATH: './test1.txt'
+  PO_FILE_PATH: './test2.txt'
+  
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: setup po4a
+        run: |
+          DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends po4a
+          sudo apt install libunicode-linebreak-perl
+
+      - name: make file
+        run: |
+          cat ${{ env.BASE_FILE_PATH }} > ${{ env.PO_FILE_PATH }}
