@@ -36,8 +36,8 @@ jobs:
 
       - name: archive artifacts
         uses: actions/upload-artifact@v3
+        if: ${{ success() }}
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: ${{ env.PO_FILE_PATH }}
           retention-days: 1
-        if: ${{ success() }}
