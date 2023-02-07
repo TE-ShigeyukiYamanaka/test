@@ -1,22 +1,22 @@
 # This workflow is for Make Document Sample.
 
-name: Testworkflows
+name: "retro-cicdteam_sample: Update po files"
 
 # Controls when the action will run.
 on:
   push:
-    branches: [ 'test/20230206' ]
+    branches: [ 'feature/yamanaka/asciidoc_actions/docs/T4_Device_SDK/ja/DeviceSDK_Manual_ja.adoc' ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 env:
-  ARTIFACT_NAME: 'output_test_file'
-  BASE_FILE_PATH: './sample.adoc'
-  PO_FILE_PATH: './sample.po'
+  ARTIFACT_NAME: 'output_updatepo_file'
+  BASE_FILE_PATH: './docs/T4_Device_SDK/ja/DeviceSDK_Manual_ja.adoc'
+  PO_FILE_PATH: './docs/T4_Device_SDK/po/DeviceSDK_Manual_ja.po'
   
 jobs:
-  test:
+  updatepo:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -28,7 +28,7 @@ jobs:
       - name: setup po4a
         run: |
           DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends po4a
-          #sudo apt install libunicode-linebreak-perl
+          sudo apt install libunicode-linebreak-perl
 
       - name: make updatepo file
         run: |
@@ -39,5 +39,5 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: ${{ env.PO_FILE_PATH }}
-          retention-days: 1
+          retention-days: 10
         if: ${{ success() }}
