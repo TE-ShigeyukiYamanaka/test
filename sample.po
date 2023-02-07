@@ -3,32 +3,2048 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-12-15 09:23+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2023-01-16 06:17+0000\n"
+"PO-Revision-Date: 2022-12-23 15:19+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 
-#. type: Positional ($1) AttributeList argument for macro 'image'
-#: ./docs/ja/sample.adoc:1 ./docs/ja/sample.adoc:5
+#. type: Title =
+#: DeviceSDK_Manual_ja.adoc:1
 #, no-wrap
-msgid "SSD接続方法"
-msgstr "SSD connection method"
+msgid "image:../AITRIOS-Logo_Blue_w480.png[width=\"200\"] pass:[<br/>] T4 Device SDK Manual pass:[<br/>]image:Draft_Watermark.png[fit=none,pdfwidth=40%] "
+msgstr "image:../AITRIOS-Logo_Blue_w480.png[width=\"200\"] pass:[<br/>] T4 Device SDK Manual pass:[<br/>]image:Draft_Watermark.png[fit=none,pdfwidth=40%] "
 
 #. type: Plain text
-#: ./docs/ja/sample.adoc:4
-msgid "SSDを以下の位置に設置。"
-msgstr "Set the SSD in the following position."
+#: DeviceSDK_Manual_ja.adoc:14
+msgid "chapter-label: 1"
+msgstr "chapter-label: 1"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:17 DeviceSDK_Manual_ja.adoc:50
+#: DeviceSDK_Manual_ja.adoc:81 DeviceSDK_Manual_ja.adoc:101
+#: DeviceSDK_Manual_ja.adoc:114 DeviceSDK_Manual_ja.adoc:145
+#: DeviceSDK_Manual_ja.adoc:179 DeviceSDK_Manual_ja.adoc:377
+#: DeviceSDK_Manual_ja.adoc:508
+msgid "<<<"
+msgstr "<<<"
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:18
+#, no-wrap
+msgid "はじめに"
+msgstr "Introduction"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:20
+msgid ""
+"本章では、デバイスSDKマニュアルの概要および、使用の前提について説明します。 +"
+msgstr ""
+"This chapter provides the overview of the Device SDK Manual and the "
+"preconditions of use. +"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:21
+#, no-wrap
+msgid "本書の概要"
+msgstr "Overview of this document"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:23
+msgid "本書はAITRIOSのデバイスSDKの使い方を記載したマニュアルです。 +"
+msgstr "This is a manual which provides how to use AITRIOS Device SDK. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:26
+msgid ""
+"デバイスSDKのベースとなるハードウェアの回路図は以下のドキュメントを参照してく"
+"ださい。 + 「DeviceSDK_Reference_Hardware_SircuitDiagram.pdf」 +"
+msgstr ""
+"Refer to the following document for the hardware circuit diagram which is "
+"the base of the Device SDK.  + “DeviceSDK_Reference_Hardware_SircuitDiagram."
+"pdf” +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:29
+msgid ""
+"SCSとエッジデバイス間の通信APIは以下のドキュメントを参照してください。 + "
+"「DeviceSDK_Cloud-Edge_IF.xlsx」"
+msgstr ""
+"See the following document for the communication API between SCS and edge "
+"device. + “DeviceSDK_Cloud-Edge_IF.xlsx”"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:31
+#, no-wrap
+msgid "関連文書および提供物"
+msgstr "Related documents and submissions"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:34
+msgid ""
+"DeviceSDK_Reference_Hardware_SircuitDiagram.pdf + デバイスSDKのベースとなる"
+"ハードウェアの回路図 +"
+msgstr ""
+"DeviceSDK_Reference_Hardware_SircuitDiagram.pdf + Hardware circuit diagram "
+"which is the base of the Device SDK. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:36
+msgid "DeviceSDK_Cloud-Edge_IF.xlsx + SCSとエッジデバイス間の通信API仕様 +"
+msgstr ""
+"DeviceSDK_Cloud-Edge_IF.xlsx + Specification of communication API between "
+"SCS and edge device. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:38
+msgid "evp-device-agent-1.0.1.zip + evp device agent"
+msgstr "evp-device-agent-1.0.1.zip + evp device agent"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:39
+msgid "PostManスクリプト"
+msgstr "PostMan script"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:40
+msgid "Device-Registration.postman_collection.zip"
+msgstr "Device-Registration.postman_collection.zip"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:41 DeviceSDK_Manual_ja.adoc:584
+msgid "Postman_Script.zip"
+msgstr "Postman_Script.zip"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:42 DeviceSDK_Manual_ja.adoc:547
+msgid "DeviceSDK-IntegTest-Util-Module.postman_collection.json"
+msgstr "DeviceSDK-IntegTest-Util-Module.postman_collection.json"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:43 DeviceSDK_Manual_ja.adoc:548
+msgid "DeviceSDK-IntegTest-Setup-Deploy.postman_collection.json"
+msgstr "DeviceSDK-IntegTest-Setup-Deploy.postman_collection.json"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:44 DeviceSDK_Manual_ja.adoc:549
+msgid "@DeviceSDK-IntegTest-Common-Env-LF2.postman_environment.json"
+msgstr "@DeviceSDK-IntegTest-Common-Env-LF2.postman_environment.json"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:45
+msgid "DeviceSDK-IntegTest-DrvModeFullres.postman_collection.json"
+msgstr "DeviceSDK-IntegTest-DrvModeFullres.postman_collection.json"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:46
+#, no-wrap
+msgid "デバイスSDKとは"
+msgstr "What is Device SDK?"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:48
+msgid ""
+"デバイスSDKとはソニーセミコンダクタソリューションズ株式会社（以下 SSS）が作成"
+"したAITRIOS規格準拠カメラのリファレンスソフトウェアです。デバイスSDKはSSSが提"
+"供しているリファレンスハードウェア上で構築されています。SSSが提供しているリ"
+"ファレンスハードウェアの概要については「<<HardwareConstitution,ハードウェア構"
+"成>>」を参照してください。カメラベンダーは、デバイスSDKをベースに開発すること"
+"で、AITRIOS規格準拠カメラの基本的な機能を短期間に実現することが可能となりま"
+"す。 +"
+msgstr ""
+"Device SDK is a reference software of AITRIOS standard-compliant camera "
+"which is created by Sony Semiconductor Solutions Cooperation (hereinafter "
+"referred as SSS). Device SDK is built on the reference hardware offered by "
+"SSS. Refer to \"<<HardwareConstitution,Hardware configuration>>\" for the "
+"outline of reference hardware offered from SSS. Camera vendors will be able "
+"to accomplish the basic functions of AITRIOS standard-compliant cameras in a "
+"short period of time by developing with Devise SDK in base. +"
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:52
+#, no-wrap
+msgid "Hardware構成"
+msgstr ""
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:53
+#, no-wrap
+msgid "ハードウェア概要"
+msgstr "Hardware outline"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:55
+msgid "SSSが作成しているリファレンスハードウェアの機能概要を以下に示します。 +"
+msgstr ""
+"The following is the function outline of reference hardware created by SSS. +"
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:59
+#, no-wrap
+msgid "2+<|Type|Comment \n"
+msgstr "2+<|Type|Comment \n"
+
+#. type: Block title
+#: DeviceSDK_Manual_ja.adoc:59
+#, no-wrap
+msgid "3+<.<|Key Device"
+msgstr "3+<.<|Key Device"
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:64
+#, no-wrap
+msgid ""
+"        |Image sensor|IMX500 4056x3040 pix, 1.55um, 1/2.3’’\n"
+"        |Soc|NXP i.MX8M plus +\n"
+"             EMMC 32GB / DRAM 6GB\n"
+"        |IMX500 ROM|16MB×2\n"
+msgstr ""
+"        |Image sensor|IMX500 4056x3040 pix, 1.55um, 1/2.3’’\n"
+"        |Soc|NXP i.MX8M plus +\n"
+"             EMMC 32GB / DRAM 6GB\n"
+"        |IMX500 ROM|16MB×2\n"
+
+#. type: Block title
+#: DeviceSDK_Manual_ja.adoc:64
+#, no-wrap
+msgid "8+<.<|I/F"
+msgstr "8+<.<|I/F"
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:74
+#, no-wrap
+msgid ""
+"        |HDMI|Mini HDMI(Inside the cover)\n"
+"        |Wi-Fi|802.11b/g/n\n"
+"        |Bluetooth|BT5.0\n"
+"        |Ethernet|1000 Base-T(PoE), RJ45\n"
+"        |USB|USB-A(Host 3.0) +\n"
+"             USB-C(Only Device 3.0) (Inside the cover)\n"
+"        |UART|3Port (FTDI is on board, IF connector is USB-micro B) (Inside the cover)\n"
+"        |Audio In/Out|Mic IN(2ch)\n"
+"        |Power supply|USB PD(9, 12, 20V) / PoE(IEEE802.3 af, RJ45)\n"
+msgstr ""
+"        |HDMI|Mini HDMI(Inside the cover)\n"
+"        |Wi-Fi|802.11b/g/n\n"
+"        |Bluetooth|BT5.0\n"
+"        |Ethernet|1000 Base-T(PoE), RJ45\n"
+"        |USB|USB-A(Host 3.0) +\n"
+"             USB-C(Only Device 3.0) (Inside the cover)\n"
+"        |UART|3Port (FTDI is on board, IF connector is USB-micro B) (Inside the cover)\n"
+"        |Audio In/Out|Mic IN(2ch)\n"
+"        |Power supply|USB PD(9, 12, 20V) / PoE(IEEE802.3 af, RJ45)\n"
+
+#. type: Block title
+#: DeviceSDK_Manual_ja.adoc:74
+#, no-wrap
+msgid "2+<.<|UI"
+msgstr "2+<.<|UI"
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:78
+#, no-wrap
+msgid ""
+"        |LED|3pcs x bi-color(Green, Red) LED for service +\n"
+"             2pcs of single color(Yellow, Green) LED for Ether link\n"
+"        |External switch|1 pcs Reset switch for Factory Reset\n"
+msgstr ""
+"        |LED|3pcs x bi-color(Green, Red) LED for service +\n"
+"             2pcs of single color(Yellow, Green) LED for Ether link\n"
+"        |External switch|1 pcs Reset switch for Factory Reset\n"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:82
+#, no-wrap
+msgid "ハードウェアの各部名称"
+msgstr "Names of hardware parts"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:84
+msgid "後面 +"
+msgstr "Backside +"
 
 #. type: Target for macro image
-#: ./docs/ja/sample.adoc:5
+#: DeviceSDK_Manual_ja.adoc:85
 #, no-wrap
-msgid "NX215B_inside.png"
+msgid "PXL_20221122_102212256_trim.jpg"
+msgstr "PXL_20221122_102212256_trim.jpg"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:88
+msgid "右側面 +"
+msgstr "Right side +"
+
+#. type: Target for macro image
+#: DeviceSDK_Manual_ja.adoc:89
+#, no-wrap
+msgid "PXL_20221122_102117758_trim.jpg"
+msgstr "PXL_20221122_102117758_trim.jpg"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:92
+msgid "左側面 +"
+msgstr "Left side +"
+
+#. type: Target for macro image
+#: DeviceSDK_Manual_ja.adoc:93
+#, no-wrap
+msgid "PXL_20221122_102126703_trim.jpg"
+msgstr "PXL_20221122_102126703_trim.jpg"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:96
+msgid "上面 +"
+msgstr "Top side +"
+
+#. type: Target for macro image
+#: DeviceSDK_Manual_ja.adoc:97
+#, no-wrap
+msgid "PXL_20221122_102146831_trim.jpg"
+msgstr "PXL_20221122_102146831_trim.jpg"
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:102
+#, no-wrap
+msgid "ソフトウェア構成"
+msgstr "Software configuration"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:104
+msgid "本章ではデバイスSDKのソフトウェア構成を示します。 +"
+msgstr "This chapter provides software configuration of Device SDK. +"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:105
+#, no-wrap
+msgid "リファレンスOS"
+msgstr "Reference OS"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:107
+msgid ""
+"リファレンスOSとしてNXP社製Yoctoを利用しています。Yoctoについて詳しくはlink:"
+"https://www.nxp.com/docs/en/user-guide/IMX_YOCTO_PROJECT_USERS_GUIDE.pdf[「i."
+"MX Yocto Project User's Guide (nxp.com)」]をご覧ください。 +"
 msgstr ""
+"NXP Yocto is used as the reference OS. See link:https://www.nxp.com/docs/en/"
+"user-guide/IMX_YOCTO_PROJECT_USERS_GUIDE.pdf[\"i.MX Yocto Project User's "
+"Guide (nxp.com)\"] for details on Yocto. +"
+
+#. type: Positional ($1) AttributeList argument for macro 'image'
+#: DeviceSDK_Manual_ja.adoc:108 DeviceSDK_Manual_ja.adoc:111
+#, no-wrap
+msgid "全体構成"
+msgstr "Overall configuration"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:110
+msgid ""
+"デバイスSDKではホストソフトウェア上で動くソフトウェアと、コンテナ上で動くソフ"
+"トウェアで構成されています。 +"
+msgstr ""
+"The Device SDK consists of software that runs on the host software and "
+"software that runs on the container. +"
+
+#. type: Target for macro image
+#: DeviceSDK_Manual_ja.adoc:111
+#, no-wrap
+msgid "AITRIOS_CertifiedSystemStreamingSoftwareStack.png"
+msgstr "AITRIOS_CertifiedSystemStreamingSoftwareStack.png"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:115
+#, no-wrap
+msgid "モジュール説明"
+msgstr "Module description"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:117
+msgid "デバイスSDKには以下のようなモジュールがあります。 +"
+msgstr "Device SDK has the following modules. +"
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:139
+#, no-wrap
+msgid ""
+"|Component|Location|Responsibility\n"
+"|Proxy|Container|SCS Edge AgentとVendor Extension Agentの処理を振り分けるモジュール\n"
+"|Edge Agent|Container|SCSからのCommandを配下のApp.に振り分けるモジュール\n"
+"|Video Output App|Container|Video Network Streaming Application\n"
+"|Video Record App|Container|Record MP4 Video on USB?\n"
+"|Image Output App|Container|Output Viewing/Input Tensor image to NFS, SSHFS or blob.\n"
+"|Inference Output App.|Container|Output Inference data to MQTT, NFS, SSHFS or blob.\n"
+"|One-Shot Image App.|Container|Reply Viewing/Input Tensor image via REST API response.\n"
+"|GStreamer|Container|Viewing用のStreaming処理を実施するアプリケーション\n"
+"|VideoIF|Container|GStreamerのPath構築などを管理するレイヤ\n"
+"|OTA App.|Container|OTA Application.\n"
+"|System App.|Container|System maintenance Application.\n"
+"|PQA App.|Container|Picture QuAlity Application.\n"
+"|Sensor Util App.|Container|Sensor Access Utility Application.\n"
+"|Inference Comp.|Container|推論処理結果をApp.に提供する\n"
+"|Install App.|Host|Initial Setup (IP Address, NTP, etc...) Application.\n"
+"|YC Comp. [SPL]|Host|Sensorから取得したViewingデータをClientに提供する（SensCord）\n"
+"|IMX500 Comp. [SPL]|Host|Sensorから取得したI.T./O.T./RAW imageデータをClientに提供する（SensCord）\n"
+"|eSDK|Host|IMX500 access library\n"
+msgstr ""
+"|Component|Location|Responsibility\n"
+"|Proxy|Container|Module to sort between SCS Edge Agent and Vendor Extension Agent processing\n"
+"|Edge Agent|Container|Module to distribute commands from SCS to subordinate App.\n"
+"|Video Output App|Container|Video Network Streaming Application\n"
+"|Video Record App|Container|Record MP4 Video on USB?\n"
+"|Image Output App|Container|Output Viewing/Input Tensor image to NFS, SSHFS or blob.\n"
+"|Inference Output App.|Container|Output Inference data to MQTT, NFS, SSHFS or blob.\n"
+"|One-Shot Image App.|Container|Reply Viewing/Input Tensor image via REST API response.\n"
+"|GStreamer|Container|Application to conduct Streaming process for Viewing.\n"
+"|VideoIF|Container|Layer used to manage GStreamer Path construction, etc.\n"
+"|OTA App.|Container|OTA Application.\n"
+"|System App.|Container|System maintenance Application.\n"
+"|PQA App.|Container|Picture QuAlity Application.\n"
+"|Sensor Util App.|Container|Sensor Access Utility Application.\n"
+"|Inference Comp.|Container|Provides inference processing results to App.\n"
+"|Install App.|Host|Initial Setup (IP Address, NTP, etc...) Application.\n"
+"|YC Comp. [SPL]|Host|Provides the Viewing data acquired from Sensor to Client (SensCord).\n"
+"|IMX500 Comp. [SPL]|Host|Provides I.T./O.T./RAW image data acquired from Sensor to Client (SensCord).\n"
+"|eSDK|Host|IMX500 access library\n"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:141
+#, no-wrap
+msgid "適当"
+msgstr ""
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:143
+msgid "章を追加したらどうなるか"
+msgstr ""
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:146
+#, no-wrap
+msgid "デバイスSDKビルド方法"
+msgstr "Device SDK build procedure"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:147
+#, no-wrap
+msgid "ビルド手順"
+msgstr "Build procedure"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:148
+#, no-wrap
+msgid "ビルド実行(ホスト環境) +"
+msgstr "Build execution (Host environment) +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:151 DeviceSDK_Manual_ja.adoc:166
+msgid "環境設定を行う"
+msgstr "Configure environment settings."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:152
+msgid "ビルドを実行する +"
+msgstr "Execute build. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:154
+msgid ""
+"ビルド手順は aitrios-sdk-device-otb-imx8mp-host-sdk の README.md を参照してく"
+"ださい。 +"
+msgstr ""
+"See README.md of aitrios-sdk-device-otb-imx8mp-host-sdk for build procedure. "
+"+"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:156
+msgid ""
+"URL: https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-otb-"
+"imx8mp-host-sdk"
+msgstr ""
+"URL: https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-otb-"
+"imx8mp-host-sdk"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:159
+msgid ""
+"make コマンドの実行後、workspace/build/tmp/deploy/images /refsys-imx8mp 以下"
+"に下記のファイルが作成されることを確認してください。 +"
+msgstr ""
+"After executing make command, confirm that the following files are created "
+"in the workspace/build/tmp/deploy/images /refsys-imx8mp. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:161 DeviceSDK_Manual_ja.adoc:324
+msgid "imx-image-full-refsys-imx8mp.wic.bz2"
+msgstr "imx-image-full-refsys-imx8mp.wic.bz2"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:162 DeviceSDK_Manual_ja.adoc:325
+msgid "imx-boot-refsys-imx8mp-sd.bin-flash_evk"
+msgstr "imx-boot-refsys-imx8mp-sd.bin-flash_evk"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:164
+#, no-wrap
+msgid "ビルド実行(コンテナ環境)"
+msgstr "Build execution (Container environment)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:167
+msgid "ビルドを実行する"
+msgstr "Execute build."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:169
+msgid ""
+"ビルド手順は aitrios-sdk-device-otb-sc-container-sdk の README.md を参照して"
+"ください。"
+msgstr ""
+"See README.md of aitrios-sdk-device-otb-sc-container-sdk for build procedure."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:171
+msgid ""
+"URL: link:https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-"
+"otb-sc-container-sdk[]"
+msgstr ""
+"URL: link:https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-"
+"otb-sc-container-sdk[]"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:173
+msgid ""
+"make コマンドの実行後、workspace/deploy に下記のファイル(Dockerイメージ)が作"
+"成されることを確認してください。 +"
+msgstr ""
+"After executing make command, confirm that the following file (Docker image) "
+"is created in workspace/deploy. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:175
+msgid "smartcamera.tar.gz"
+msgstr "smartcamera.tar.gz"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:177
+msgid ""
+"作成されたイメージは、「<<DockerImageRegistrationProcedure,Dockerイメージの登"
+"録手順>>」において EVP Hub へDockerイメージをアップロードするために使用しま"
+"す。 +"
+msgstr ""
+"The created image is used to upload Docker image to EVP Hub at "
+"“<<DockerImageRegistrationProcedure,Docker image registration procedure>>\". "
+"+"
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:180
+#, no-wrap
+msgid "インストール方法"
+msgstr "Installation method"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:182
+#, no-wrap
+msgid "Dockerイメージの登録手順"
+msgstr "Docker image registration procedure"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:183
+#, no-wrap
+msgid "DockerイメージのEVP Hubへの登録手順"
+msgstr "Registration procedure of Docker image to EVP Hub"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:186
+msgid ""
+"「<<RunBuild_Container,ビルド実行(コンテナ環境)>>」で作成した smartcamera."
+"tar.gz を EVP Hub に登録します。 +"
+msgstr ""
+"Registers the smartcamera.tar.gz created in \"<<RunBuild_Container,Build "
+"execution (Container environment) >>\" to EVP Hub."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:188
+msgid "Dockerイメージをロードする +"
+msgstr "Load Docker image. +"
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:191
+#, no-wrap
+msgid "  $ docker load -i smartcamera.tar.gz\n"
+msgstr "  $ docker load -i smartcamera.tar.gz\n"
+
+#. link:https://www.tool.sony.biz/confluence/pages/viewpage.action?pageId=2278155848[Module登録方法 - 2021_SSS_ReferenceSystem - Confluence (sony.biz)] +
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:196
+msgid ""
+"Moduleを登録する + DockerイメージをEVP Hub にアップロードし、Moduleとして登録"
+"してください。 + 登録方法は下記の手順を参照してください。 +"
+msgstr ""
+"Register the Module. + Upload Docker image to EVP Hub and register it as a "
+"Module. + See the following instruction for registration. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:198
+msgid "「<<ModuleRegistrationProcedure,モジュール登録方法>>」"
+msgstr "\"<<ModuleRegistrationProcedure,Module regsitration method >>\""
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:202
+msgid ""
+"Deploymentを実行する + Moduleの登録時に取得した MODULE_ID と MODULE_NAME を使"
+"用して Deploymentを設定してください。 + Deployment の設定と実行の方法は"
+"「<<EvpControlMethod,EVPを使用したデバイス制御方法>>」を参照してください。 +"
+msgstr ""
+"Execute Deployment. + Configure the Deployment using the MODULE_ID and "
+"MODULE_NAME acquired at Module registration. + See “<<EvpControlMethod,"
+"Device control using EVP>>” for or instructions on how to configure and "
+"execute Deployment. +"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:204
+#, no-wrap
+msgid "モジュール登録方法"
+msgstr "Module registration procedure"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:207
+msgid "必要な情報を確認する + 下記の検証環境の情報を用意してください。"
+msgstr ""
+"Verify the required information.  + Prepare the following information on the "
+"verification environment."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:208 DeviceSDK_Manual_ja.adoc:390
+#, no-wrap
+msgid "使用するコンテナレジストリの情報"
+msgstr "Information on the container registry to be used."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:209 DeviceSDK_Manual_ja.adoc:392
+msgid "コンテナレジストリのURL (例 : dummy.azurecr.io)"
+msgstr "Container registry URL (e.g.: dummy.azurecr.io)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:210
+msgid "コンテナレジストリのユーザー名 (例 : dummy_cr_user)"
+msgstr "Container registry username (e.g.: dummy_cr_user)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:211 DeviceSDK_Manual_ja.adoc:394
+msgid "コンテナレジストリのパスワード (例 : dummy_cr_password)"
+msgstr "Container registry password (e.g.: dummy_cr_password)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:212
+msgid "EVP Module関連の情報"
+msgstr "Information related to EVP Module"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:214
+msgid ""
+"Dockerイメージ(例 : dummy_module_image.tar)、またはModuleがローカルDocker "
+"Registryに登録済み(例 : dummy_module_image: module_version)の環境"
+msgstr ""
+"Environment in which Docker image (e.g.: dummy_module_image.tar) or Module "
+"is registered to local Docker Registry (e.g.: dummy_module_image: "
+"module_version)."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:215 DeviceSDK_Manual_ja.adoc:383
+#, no-wrap
+msgid "使用するEVP Hubの情報"
+msgstr "Information on the EVP Hub to be used."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:216
+msgid "EVP HubのURL (例 : https://dummy.cloudapp.azure.com)"
+msgstr "EVP Hub URL (e.g.: https://dummy.cloudapp.azure.com)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:217
+msgid "EVP Hubのポート番号 (例 : 443)"
+msgstr "EVP Hub port number (e.g.: 443)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:218
+msgid "EVP Hubのユーザー名 (例 : dummy_evp_user)"
+msgstr "EVP Hub username (e.g.: dummy_evp_user)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:219
+msgid "EVP Hubのパスワード (例 : dummy_evp_password)"
+msgstr "EVP Hub password (e.g.: dummy_evp_password)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:221
+msgid "コンテナをアップロードする +"
+msgstr "Upload container. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:222
+msgid "環境に合わせて環境変数を設定する"
+msgstr "Set environment variables according to the environment."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:230
+#, no-wrap
+msgid ""
+"export DOCKER_REGISTRY=\"dummy.azurecr.io\" ;\n"
+"export DOCKER_USER=\"dummy_cr_user\" ;\n"
+"export DOCKER_PASSWORD=\"dummy_cr_password\" ;\n"
+"export MODULE_BASE_NAME=\"dummy_module_image\" ;\n"
+"export MODULE_VERSION=\"module_version\" ;\n"
+"export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;\n"
+msgstr ""
+"export DOCKER_REGISTRY=\"dummy.azurecr.io\" ;\n"
+"export DOCKER_USER=\"dummy_cr_user\" ;\n"
+"export DOCKER_PASSWORD=\"dummy_cr_password\" ;\n"
+"export MODULE_BASE_NAME=\"dummy_module_image\" ;\n"
+"export MODULE_VERSION=\"module_version\" ;\n"
+"export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:234
+msgid ""
+"ModuleのDockerイメージをTarballで入手している場合、ローカルDocker Registryに"
+"取り込む + ここでは、取り込まれたイメージ名がdummy_module_image:latestだった"
+"ものとして記載します。"
+msgstr ""
+"When Docker image of Module is obtained at Tarball, import it to local "
+"Docker Registry. + In this example, the name of the imported image is "
+"assumed as the dummy_module_image:latest."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:237
+#, no-wrap
+msgid "docker load -i dummy_module_image.tar\n"
+msgstr "docker load -i dummy_module_image.tar\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:240
+msgid "ロードしたコンテナにタグを付ける"
+msgstr "Tag the loaded container."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:243
+#, no-wrap
+msgid "docker tag dummy_module_image:latest $DOCKER_REGISTRY/$MODULE_IMAGE_NAME\n"
+msgstr "docker tag dummy_module_image:latest $DOCKER_REGISTRY/$MODULE_IMAGE_NAME\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:246
+msgid "ACRにログインする"
+msgstr "Login to ACR."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:249
+#, no-wrap
+msgid "docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_PASSWORD\n"
+msgstr "docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_PASSWORD\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:252
+msgid "コンテナをpushする"
+msgstr "Push container."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:255
+#, no-wrap
+msgid "docker push $DOCKER_REGISTRY/$MODULE_IMAGE_NAME\n"
+msgstr "docker push $DOCKER_REGISTRY/$MODULE_IMAGE_NAME\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:258
+msgid "EVP HubにModuleを登録する +"
+msgstr "Registers Module to EVP Hub. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:259
+msgid "環境に合わせて環境変数を設定する +"
+msgstr "Set environment variables according to the environment. +"
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:272
+#, no-wrap
+msgid ""
+"export DOCKER_REGISTRY=\"dummy.azurecr.io\" ;\n"
+"export DOCKER_USER=\"dummy_cr_user\" ;\n"
+"export DOCKER_PASSWORD=\"dummy_cr_password\" ;\n"
+"export MODULE_BASE_NAME=\"dummy_module_image\" ;\n"
+"export MODULE_VERSION=\"module_version\" ;\n"
+"export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;\n"
+"export MODULE_NAME=${MODULE_BASE_NAME}_${MODULE_VERSION} ;\n"
+"export EVPHUB_URL=\"https://dummy.cloudapp.azure.com:443\"\n"
+"export EVPHUB_USER=\"dummy_evp_user\"\n"
+"export EVPHUB_PASS=\"dummy_evp_password\"\n"
+"export MODULE_HASH=\"0000000000000000000000000000000000000000\";\n"
+msgstr ""
+"export DOCKER_REGISTRY=\"dummy.azurecr.io\" ;\n"
+"export DOCKER_USER=\"dummy_cr_user\" ;\n"
+"export DOCKER_PASSWORD=\"dummy_cr_password\" ;\n"
+"export MODULE_BASE_NAME=\"dummy_module_image\" ;\n"
+"export MODULE_VERSION=\"module_version\" ;\n"
+"export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;\n"
+"export MODULE_NAME=${MODULE_BASE_NAME}_${MODULE_VERSION} ;\n"
+"export EVPHUB_URL=\"https://dummy.cloudapp.azure.com:443\"\n"
+"export EVPHUB_USER=\"dummy_evp_user\"\n"
+"export EVPHUB_PASS=\"dummy_evp_password\"\n"
+"export MODULE_HASH=\"0000000000000000000000000000000000000000\";\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:275
+msgid "EVP Hubにログインしトークンを取得する"
+msgstr "Login to EVP Hub and obtain token."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:283
+#, no-wrap
+msgid ""
+"export AUTHTOKEN=$( \\\n"
+"curl -s --location --request POST \"$EVPHUB_URL/api/auth/login\" \\\n"
+"--header 'Content-Type: \"application/json\"' \\\n"
+"--header 'Accept: \"application/json\"' \\\n"
+"--data-raw '{ \"username\":\"'\"$EVPHUB_USER\"'\", \"password\":\"'\"$EVPHUB_PASS\"'\" }' \\\n"
+"  | tee /dev/stderr | jq -r '.token' )\n"
+msgstr ""
+"export AUTHTOKEN=$( \\\n"
+"curl -s --location --request POST \"$EVPHUB_URL/api/auth/login\" \\\n"
+"--header 'Content-Type: \"application/json\"' \\\n"
+"--header 'Accept: \"application/json\"' \\\n"
+"--data-raw '{ \"username\":\"'\"$EVPHUB_USER\"'\", \"password\":\"'\"$EVPHUB_PASS\"'\" }' \\\n"
+"  | tee /dev/stderr | jq -r '.token' )\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:286
+msgid "EVP HubにModuleを登録し、Module IDを取得する"
+msgstr "Register Module to EVP Hub and obtain Module ID."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:297
+#, no-wrap
+msgid ""
+"export MODULE_ID=$( \\\n"
+"curl --location --request POST \"$EVPHUB_URL/api/evp/v1/module\" \\\n"
+"--header 'Content-Type: application/json' \\\n"
+"--header \"X-Authorization: Bearer: $AUTHTOKEN\" \\\n"
+"--data-raw '{\"name\": \"'\"$MODULE_NAME\"\\\n"
+"'\",\"type\": \"Linux modules\",\"resourceUrl\":\"'\\\n"
+"\"$DOCKER_REGISTRY\"'/'\"$MODULE_IMAGE_NAME\"\\\n"
+"'\",\"entryPoint\": \"main\",\"hash\": \"'\"$MODULE_HASH\"'\"}' \\\n"
+"  | tee /dev/stderr | jq -r '.id.id' )\n"
+msgstr ""
+"export MODULE_ID=$( \\\n"
+"curl --location --request POST \"$EVPHUB_URL/api/evp/v1/module\" \\\n"
+"--header 'Content-Type: application/json' \\\n"
+"--header \"X-Authorization: Bearer: $AUTHTOKEN\" \\\n"
+"--data-raw '{\"name\": \"'\"$MODULE_NAME\"\\\n"
+"'\",\"type\": \"Linux modules\",\"resourceUrl\":\"'\\\n"
+"\"$DOCKER_REGISTRY\"'/'\"$MODULE_IMAGE_NAME\"\\\n"
+"'\",\"entryPoint\": \"main\",\"hash\": \"'\"$MODULE_HASH\"'\"}' \\\n"
+"  | tee /dev/stderr | jq -r '.id.id' )\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:300
+msgid ""
+"MODULE_ID、MODULE_NAMEはモジュールのDeploy時に必要になるため、メモしておいて"
+"ください。 +"
+msgstr ""
+"Make a note on MODULE_ID and MODULE_NAME as they will be needed at deploying "
+"module. +"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:304
+msgid "Postmanを使用する場合 +"
+msgstr "When using Postman, +"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:307
+msgid ""
+"下記のスクリプトをPostmanにImportする + Muduleの作成/削除スクリプト："
+"DeviceSDK-IntegTest-Util-Module.postman_collection.json +"
+msgstr ""
+"import the following script to Postman. + Module creation/deletion script: "
+"DeviceSDK-IntegTest-Util-Module.postman_collection.json +"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:310
+msgid ""
+"PostmanのEnvironmentの情報を、コンテナレジストリ等の環境に合わせて更新する + "
+"CollectionsのDeviceSDK-IntegTest-Util-Moduleで下記を実行してください。 +"
+msgstr ""
+"Update Postman Environment information according to container registry "
+"environments, etc. + Execute the following at DeviceSDK-IntegTest-Util-"
+"Module of Collections. +"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:312
+msgid "Get Tokenを選択、画面右上のSendボタンをクリック +"
+msgstr ""
+"Select Get Token and click Send button in the upper right corner of the "
+"screen. +"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:313
+msgid "Create Moduleを選択、画面右上のSendボタンをクリック"
+msgstr ""
+"Select Create Module and click Send button in the upper right corner of the "
+"screen."
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:316
+#, no-wrap
+msgid "基板の立ち上げ手順"
+msgstr "Board startup procedure"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:317
+#, no-wrap
+msgid "イメージの書き込み手順 (Windows上)"
+msgstr "Image writing procedure (on Windows)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:319
+msgid "sdk_image フォルダを作成する +"
+msgstr "Create sdk_image folder. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:321
+msgid ""
+"下記のページから uuu.exe をダウンロードし、sdk_image フォルダに格納する + "
+"https://github.com/NXPmicro/mfgtools/releases"
+msgstr ""
+"Download uuu.exe from the below page and store it in the sdk_image folder.  "
+"+ https://github.com/NXPmicro/mfgtools/releases"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:323
+msgid "下記のビルド成果物をsdk_imageフォルダに格納する +"
+msgstr "Store the following build artifacts in the sdk_image folder. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:328
+msgid "基板を配線する + 基板の配線と、BootSWの設定を行ってください。 +"
+msgstr "Wire the board.  + Wire the board and set BootSW. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:330
+msgid "USB Type-CにUSBケーブルを挿入し、PCと接続する +"
+msgstr "Insert USB cable into USB Type-C and connect the board with PC. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:332
+msgid "Boot SWをONにする + 給電用USB差し込み口とは逆側に倒してください。 +"
+msgstr ""
+"Turn on the Boot SW. + Flip the switch to the opposite side of the USB port "
+"for power delivery. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:334 DeviceSDK_Manual_ja.adoc:369
+msgid ""
+"給電用USB Type-Cを電源に接続する + USBを接続すると基板の電源がONになります。 "
+"+"
+msgstr ""
+"Connect USB Type-C power delivery to power supply.  + When USB is connected, "
+"the power of the board is turned on. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:336
+msgid "image::ImageWritingProcedure_BoardWiring.png[基板配線]"
+msgstr "image::ImageWritingProcedure_BoardWiring.png[board wiring]"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:339
+msgid "基板にイメージを書き込む +"
+msgstr "Write an image on the board +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:341
+msgid ""
+"コマンドプロンプトを立ち上げ、sdk_imageフォルダに移動して下記のコマンドを実行"
+"してください。 +"
+msgstr ""
+"Open command prompt. Move to sdk_image folder and execute the following "
+"command. +"
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:344
+#, no-wrap
+msgid " .\\uuu.exe -b emmc_all ..\\imx-boot-refsys-imx8mp-sd.bin-flash_evk ..\\imx-image-full-refsys-imx8mp.wic.bz2\n"
+msgstr " .\\uuu.exe -b emmc_all ..\\imx-boot-refsys-imx8mp-sd.bin-flash_evk ..\\imx-image-full-refsys-imx8mp.wic.bz2\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:347
+msgid ""
+"書き込みが終わると以下のような表示になるので、基板の電源を一度切ってくださ"
+"い。 +"
+msgstr ""
+"When writing is completed, the display will look like the following. Turn "
+"off the board power once. +"
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:351
+#, no-wrap
+msgid ""
+" uuu (Universal Update Utility) for nxp imx chips -- libuuu_1.4.107-14-g519c261\n"
+" Success 1    Failure 0\n"
+msgstr ""
+" uuu (Universal Update Utility) for nxp imx chips -- libuuu_1.4.107-14-g519c261\n"
+" Success 1    Failure 0\n"
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:355
+#, no-wrap
+msgid ""
+" 1:141    8/ 8 [Done                                  ] FB: done\n"
+" 1:21     1/ 1 [=================99%================> ] boot-refsys-imx8mp-sd.\n"
+msgstr ""
+" 1:141    8/ 8 [Done                                  ] FB: done\n"
+" 1:21     1/ 1 [=================99%================> ] boot-refsys-imx8mp-sd.\n"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:357
+#, no-wrap
+msgid "基板の起動手順"
+msgstr "Board startup procedure"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:359
+msgid "シリアルコンソールを接続する +"
+msgstr "Connect serial console. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:360
+msgid "USB SerialにUSBケーブルを挿入し、PCと接続する +"
+msgstr "Insert USB cable into USB Serial and connect the board with PC. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:362
+msgid ""
+"Teratermを立ち上げ、接続先にシリアルのポートの3番目を選択してOKを押す + 先頭"
+"がCOM11の場合、COM13を選択します。 +"
+msgstr ""
+"Launch Teraterm. Select the third serial port as the connection destination "
+"and press OK. + When the first port is COM11, select COM13. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:363
+msgid ""
+"メニューバーの設定->シリアルポートの順に選択し、スピードの項目を115200に変更"
+"する +"
+msgstr ""
+"Select serial port from menu bar setting and change the speed to 115200. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:365
+msgid "基板を立ち上げる +"
+msgstr "Board startup +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:367
+msgid "Boot SWをOFFにする + 給電用USB差し込み口側に倒してください。"
+msgstr ""
+"Turn off the Boot SW. + Flip the switch to the side of the USB port for "
+"power delivery."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:371
+msgid "ログインする"
+msgstr ". Login"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:372
+msgid ""
+"電源の投入後、シリアルコンソールに refsys-imx8mp login: が表示されることを確"
+"認する +"
+msgstr ""
+"Check that refsys-imx8mp login: is displayed in serial console after power "
+"activation. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:373
+msgid "ユーザー名にrootを入力し、Enterを押す +"
+msgstr "Input root in the username and press Enter. +"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:374
+#, no-wrap
+msgid "パスワードは不要です。 +\n"
+msgstr "Password is not required. +\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:375
+#, no-wrap
+msgid "最終ログイン日時が表示され、プロンプトの応答が root@refsys-imx8mp:~# となっていることを確認する +\n"
+msgstr "Check that the last login date and time is displayed, and the prompt response is root@refsys-imx8mp: +\n"
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:378
+#, no-wrap
+msgid "各種設定方法"
+msgstr "Various setting methods"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:380
+#, no-wrap
+msgid "EVP Hubの接続の準備 "
+msgstr "EVP Hub connection preparation "
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:382
+msgid "下記の項目について確認します。"
+msgstr "Confirm the following items."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:385
+msgid "EVP HubのMQTT URL (例 : mqtt-dummy.cloudapp.azure.com)"
+msgstr "EVP Hub MQTT URL (e.g.: mqtt-dummy.cloudapp.azure.com)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:386
+msgid "EVP HubのMQTTポート番号 (例 : 1111)"
+msgstr "EVP Hub MQTT port number (e.g.: 1111)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:387
+msgid "EVP Hubの証明書ファイル (mqttserver.pub.pem)"
+msgstr "EVP Hub certificate file (mqttserver.pub.pem) "
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:389
+msgid ""
+"詳細は「<<CreateServerCertificates,サーバー証明書の作成>>」に記載しています。"
+msgstr ""
+"Details are stated in \"<<CreateServerCertificates,Creating Server "
+"Certifcates>>\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:393
+msgid "コンテナレジストリへのログイン Username (例 : dummy_cr_user)"
+msgstr "Container registry login Username (e.g.: dummy_cr_user)"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:395
+#, no-wrap
+msgid "証明書"
+msgstr "Certificates"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:397
+msgid "クライアント証明書(mqttclient.nopass.pem)"
+msgstr "Client certificate (mqttclient.nopass.pem)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:399
+msgid ""
+"詳細は「<<CreateClientCertificates,クライアント証明書の作成>>」に記載していま"
+"す。"
+msgstr ""
+"Details are stated in \"<<CreateClientCertificates,Creating Client "
+"Certificates>>\"."
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:400
+#, no-wrap
+msgid "EVP Hubに接続するための証明書の準備"
+msgstr "EVP Hub connection certificate preparation"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:403
+#, no-wrap
+msgid "クライアント証明書の作成 ( cert.pem & mqttclient.nopass.pem ) "
+msgstr "Creating Client Certificates ( cert.pem & mqttclient.nopass.pem )"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:405
+msgid "下記のコマンドを実行します。"
+msgstr "Execute the following commands."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:411
+#, no-wrap
+msgid ""
+"$ unzip evp-device-agent-1.0.1.zip\n"
+"$ cd evp-device-agent-1.0.1/evp_agent/test/tests\n"
+"$ ./simplest-cert.sh\n"
+"$ cat key.pem cert.pem > mqttclient.nopass.pem\n"
+msgstr ""
+"$ unzip evp-device-agent-1.0.1.zip\n"
+"$ cd evp-device-agent-1.0.1/evp_agent/test/tests\n"
+"$ ./simplest-cert.sh\n"
+"$ cat key.pem cert.pem > mqttclient.nopass.pem\n"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:414
+#, no-wrap
+msgid "サーバー証明書の作成 (mqttserver.pub.pem ) "
+msgstr "Creating Server Certificates (mqttserver.pub.pem)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:416
+msgid ""
+"下記の記載の内容をファイルに保存し`mqttserver.pub.pem`の名前で作成します。"
+msgstr ""
+"Save the following description content in a file as ‘mqttserver.pub.pem’."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:417 DeviceSDK_Manual_ja.adoc:467
+#, no-wrap
+msgid "mqttserver.pub.pem"
+msgstr "mqttserver.pub.pem"
+
+#. type: delimited block -
+#: DeviceSDK_Manual_ja.adoc:443
+#, no-wrap
+msgid ""
+"-----BEGIN CERTIFICATE-----\n"
+"MIID/TCCAuWgAwIBAgIQLU8JQOB/adPfdboTqUHJrzANBgkqhkiG9w0BAQsFADB+\n"
+"MQswCQYDVQQGEwJKUDElMCMGA1UEChMcU29ueSBTZW1pY29uZHVjdG9yIFNvbHV0\n"
+"aW9uczEqMCgGA1UECxMhU3RhZ2luZyBFVlAgQ2VydGlmaWNhdGUgQXV0aG9yaXR5\n"
+"MRwwGgYDVQQDExNTdGFnaW5nIEVWUCBSb290IENBMB4XDTIxMDExMzE5MzEwMloX\n"
+"DTI2MDExMjE5MzEwMlowfjELMAkGA1UEBhMCSlAxJTAjBgNVBAoTHFNvbnkgU2Vt\n"
+"aWNvbmR1Y3RvciBTb2x1dGlvbnMxKjAoBgNVBAsTIVN0YWdpbmcgRVZQIENlcnRp\n"
+"ZmljYXRlIEF1dGhvcml0eTEcMBoGA1UEAxMTU3RhZ2luZyBFVlAgUm9vdCBDQTCC\n"
+"ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKS5j/5dvgl0a86TwGyW4G+n\n"
+"OIeXt8ASmUvSpAmAnfdpmTOeDJzCNVVCYlZc1chicGBP7xOgwL3r54P6RmeXTUNU\n"
+"M0wx6FXT7KKBZLU/WfrxDpxCw8c5fEUdDNod0vJB96mwNI4SJFsEKBmWewdjrRCa\n"
+"BouTxN5A0LCt4CqKDfdQIE0Cb5lV13SepX9Um+EyHPGv3yfqvfTsFCChozz3DGS9\n"
+"XyO68Vj/or3zh7peAl8VE4B7EufPYkl7xt2F3mt3YGTFWPzZGlVmYHKSjStG08e2\n"
+"X+h9LQY4OCYfTZn8nT56Z+9Mh9eKibLvH+qHhJWp3j8vzyHaqLGrBhB6XjHr+W0C\n"
+"AwEAAaN3MHUwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0O\n"
+"BBYEFDRVYKu5QaDtz7B4zjLZhZ1CnFOYMDMGA1UdHwQsMCowKKAmoCSGImh0dHBz\n"
+"Oi8vZXZwLXN0YWdpbmcubWlkb2t1cmEuanAvY2EwDQYJKoZIhvcNAQELBQADggEB\n"
+"AGRKUDCv3geJw4tjTULxPr6GzOkSt4HetrFJsOUSt6uItiFVBEuSNsDpBHJ9zz8J\n"
+"+PU1O1g44JtyBEDfOKiat6D9JVvDEZ7h6+kUYMiJtu+sjDJOJQLH0JqlJ7MWfrQQ\n"
+"b5ifuXqQd+fAjqqE/kzg84I1wlsJSJu371feMpN5u1QCwpvixllZx1OmEIxS5feL\n"
+"wCUKHiuJvDcmJpkvBsb8Nl0uUJygxKQ2ARMKBJH9SXLK/zUDPWMdU3V/IZRArykJ\n"
+"xxqx46i0/xaNkXTD5SPM6qPTeGCdFyZfQzEigkhuzlgIpAKQZFvdauRjbLZgSMtA\n"
+"rCzMXa5C/VW9ne+vETEzJEg=\n"
+"-----END CERTIFICATE-----\n"
+msgstr ""
+"-----BEGIN CERTIFICATE-----\n"
+"MIID/TCCAuWgAwIBAgIQLU8JQOB/adPfdboTqUHJrzANBgkqhkiG9w0BAQsFADB+\n"
+"MQswCQYDVQQGEwJKUDElMCMGA1UEChMcU29ueSBTZW1pY29uZHVjdG9yIFNvbHV0\n"
+"aW9uczEqMCgGA1UECxMhU3RhZ2luZyBFVlAgQ2VydGlmaWNhdGUgQXV0aG9yaXR5\n"
+"MRwwGgYDVQQDExNTdGFnaW5nIEVWUCBSb290IENBMB4XDTIxMDExMzE5MzEwMloX\n"
+"DTI2MDExMjE5MzEwMlowfjELMAkGA1UEBhMCSlAxJTAjBgNVBAoTHFNvbnkgU2Vt\n"
+"aWNvbmR1Y3RvciBTb2x1dGlvbnMxKjAoBgNVBAsTIVN0YWdpbmcgRVZQIENlcnRp\n"
+"ZmljYXRlIEF1dGhvcml0eTEcMBoGA1UEAxMTU3RhZ2luZyBFVlAgUm9vdCBDQTCC\n"
+"ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKS5j/5dvgl0a86TwGyW4G+n\n"
+"OIeXt8ASmUvSpAmAnfdpmTOeDJzCNVVCYlZc1chicGBP7xOgwL3r54P6RmeXTUNU\n"
+"M0wx6FXT7KKBZLU/WfrxDpxCw8c5fEUdDNod0vJB96mwNI4SJFsEKBmWewdjrRCa\n"
+"BouTxN5A0LCt4CqKDfdQIE0Cb5lV13SepX9Um+EyHPGv3yfqvfTsFCChozz3DGS9\n"
+"XyO68Vj/or3zh7peAl8VE4B7EufPYkl7xt2F3mt3YGTFWPzZGlVmYHKSjStG08e2\n"
+"X+h9LQY4OCYfTZn8nT56Z+9Mh9eKibLvH+qHhJWp3j8vzyHaqLGrBhB6XjHr+W0C\n"
+"AwEAAaN3MHUwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0O\n"
+"BBYEFDRVYKu5QaDtz7B4zjLZhZ1CnFOYMDMGA1UdHwQsMCowKKAmoCSGImh0dHBz\n"
+"Oi8vZXZwLXN0YWdpbmcubWlkb2t1cmEuanAvY2EwDQYJKoZIhvcNAQELBQADggEB\n"
+"AGRKUDCv3geJw4tjTULxPr6GzOkSt4HetrFJsOUSt6uItiFVBEuSNsDpBHJ9zz8J\n"
+"+PU1O1g44JtyBEDfOKiat6D9JVvDEZ7h6+kUYMiJtu+sjDJOJQLH0JqlJ7MWfrQQ\n"
+"b5ifuXqQd+fAjqqE/kzg84I1wlsJSJu371feMpN5u1QCwpvixllZx1OmEIxS5feL\n"
+"wCUKHiuJvDcmJpkvBsb8Nl0uUJygxKQ2ARMKBJH9SXLK/zUDPWMdU3V/IZRArykJ\n"
+"xxqx46i0/xaNkXTD5SPM6qPTeGCdFyZfQzEigkhuzlgIpAKQZFvdauRjbLZgSMtA\n"
+"rCzMXa5C/VW9ne+vETEzJEg=\n"
+"-----END CERTIFICATE-----\n"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:445
+#, no-wrap
+msgid "基板の初期設定手順"
+msgstr "Board initial setup procedure"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:447
+msgid "下記の初期設定ファイルを準備します。"
+msgstr "Prepare the following initial setup files."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:449
+msgid "EVP Runtimeの設定ファイル (evp_setup_info.txt)"
+msgstr "EVP Runtime setup file (evp_setup_info.txt)"
+
+#. type: Block title
+#: DeviceSDK_Manual_ja.adoc:450
+#, no-wrap
+msgid "evp_setup_info.txt"
+msgstr "evp_setup_info.txt"
+
+#. type: delimited block -
+#: DeviceSDK_Manual_ja.adoc:454
+#, no-wrap
+msgid ""
+"Address:mqtt-dummy.cloudapp.azure.com\n"
+"Port:1111\n"
+msgstr ""
+"Address:mqtt-dummy.cloudapp.azure.com\n"
+"Port:1111\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:457
+msgid "コンテナレジストリの設定ファイル (docker_setup_info.txt)"
+msgstr "Container registry setup file (docker_setup_info.txt)"
+
+#. type: Block title
+#: DeviceSDK_Manual_ja.adoc:458
+#, no-wrap
+msgid "docker_setup_info.txt"
+msgstr "docker_setup_info.txt"
+
+#. type: delimited block -
+#: DeviceSDK_Manual_ja.adoc:463
+#, no-wrap
+msgid ""
+"Registry:dummy.azurecr.io\n"
+"User:dummy_cr_user\n"
+"Password:dummy_evp_password\n"
+msgstr ""
+"Registry:dummy.azurecr.io\n"
+"User:dummy_cr_user\n"
+"Password:dummy_evp_password\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:466
+msgid "mqttclient.nopass.pem"
+msgstr "mqttclient.nopass.pem"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:468
+#, no-wrap
+msgid "IPアドレスの確認 "
+msgstr "IP address confirmation"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:470
+msgid "下記のコマンドをデバイスのシリアルコンソールから実行します。"
+msgstr "Execute the following command from the device serial console."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:473
+#, no-wrap
+msgid "ip -o -4 a | grep eth0\n"
+msgstr "ip -o -4 a | grep eth0\n"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:479
+msgid ""
+"シリアルコンソールが使用できない場合の対応方法として、 接続しているLAN内の"
+"DHCPサーバーのデバイス接続ログからIPアドレスを特定する方法があります。"
+msgstr ""
+"There is a way of specifying IP address from device connection log of DHCP "
+"sever in connected LAN, when serial console is unavailable."
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:481
+#, no-wrap
+msgid "デバイスと同じネットワークのPCからSSH接続を行い、初期設定ファイルを配置します。"
+msgstr "Deployment of initial setup files by connecting SSH from a PC on the same network with device"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:487
+msgid ""
+"SSHクライアントPCが新しいopensshを使用している場合（例 Ubuntu 22.04）、RSA "
+"SHA-1鍵の使用を許可する必要があります。 この設定は下記のコマンドで実行しま"
+"す。"
+msgstr ""
+"When the client PC is using the new openssh (e.g. Ubuntu 22.04), the use of "
+"RSA SHA-1 key must be authorized. This setting is executed with the "
+"following command."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:490
+#, no-wrap
+msgid "sudo echo \"HostKeyAlgorithms ssh-dss,ssh-rsa\" >> /etc/ssh/ssh_config\n"
+msgstr "sudo echo \"HostKeyAlgorithms ssh-dss,ssh-rsa\" >> /etc/ssh/ssh_config\n"
+
+#. type: delimited block =
+#: DeviceSDK_Manual_ja.adoc:494
+msgid "下記のコマンドを実行してPCからデバイスに初期設定ファイルを送信します。"
+msgstr ""
+"Execute the following command to send the initial setup file to device from "
+"PC."
+
+#. type: delimited block .
+#: DeviceSDK_Manual_ja.adoc:501
+#, no-wrap
+msgid ""
+"$ cd /path/to/initialize_files/\n"
+"$ scp mqttserver.pub.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/\n"
+"$ scp evp_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/\n"
+"$ scp docker_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/\n"
+"$ scp mqttclient*.nopass.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/mqttclient.nopass.pem\n"
+msgstr ""
+"$ cd /path/to/initialize_files/\n"
+"$ scp mqttserver.pub.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/\n"
+"$ scp evp_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/\n"
+"$ scp docker_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/\n"
+"$ scp mqttclient*.nopass.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/mqttclient.nopass.pem\n"
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:503
+#, no-wrap
+msgid "デバイスの再起動"
+msgstr "Restarting the device"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:506
+msgid ""
+"rebootコマンドを実行するなどしてデバイスを再起動すると、EVP Runtimeが起動し"
+"EVP Hubとの接続が実行されます。"
+msgstr ""
+"EVP Runtime is activated and executes the connection with EVP Hub when "
+"device is restarted by executing reboot command, etc."
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:510
+#, no-wrap
+msgid "EVPを使用したデバイス制御方法"
+msgstr "Device control methods using EVP"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:514
+msgid ""
+"EVP_HUBに接続されたデバイスの制御はEVP_HUBにREST APIのコマンドを送信して行い"
+"ます。 + REST APIの制御ツールであるPostmanを使用した制御方法を記載します。"
+msgstr ""
+"The device connected to EVP_HUB is controlled by sending REST API command to "
+"EVP_HUB. + This section provides the control method using Postman which is a "
+"control tool of REST API."
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:515
+#, no-wrap
+msgid "デバイスの登録"
+msgstr "Device Registration"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:517 DeviceSDK_Manual_ja.adoc:543
+#, no-wrap
+msgid "PostManのスクリプトのインポート"
+msgstr "PostMan script import"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:519
+msgid "Device-Registration.postman_collection.zip を取得してインポートします。"
+msgstr "Download and import Device-Registration.postman_collection.zip."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:520 DeviceSDK_Manual_ja.adoc:550
+#, no-wrap
+msgid "環境変数の設定"
+msgstr "Setting environment variables"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:522
+msgid ""
+"下表の環境変数を\"@DeviceRegistration environments.\"の\"INITIAL VALUE\"と"
+"\"CURRENT VALUE\" に設定します。"
+msgstr ""
+"Set the environment variables of the below table into \"INITIAL VALUE\" and "
+"\"CURRENT VALUE\" of \"@DeviceRegistration environments.\""
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:530
+#, no-wrap
+msgid ""
+"|変数名|値 \n"
+"|EVP_SERVER|EVP HUBのURL \n"
+"|USERNAME|EVP HUBログインのためのユーザー名 \n"
+"|PASSWORD|EVP HUBログインのためのパスワード \n"
+"|DEVICE_NAME|任意の名前 \n"
+msgstr ""
+"|VARIABLE|VALUE \n"
+"|EVP_SERVER|EVP HUB URL\n"
+"|USERNAME|Username for EVP HUB login \n"
+"|PASSWORD|Password for EVP HUB login \n"
+"|DEVICE_NAME|Any Name\n"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:532
+#, no-wrap
+msgid "証明書の設定"
+msgstr "Certificate settings"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:534
+msgid ""
+"cert.pemの値を\"/api/evp/v1/device/credentials\"コマンドの"
+"\"credentialsValue\"に設定します。"
+msgstr ""
+"Set the value of cert.pem into \"credentialsValue\" of \"/api/evp/v1/device/"
+"credentials\" command."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:535
+#, no-wrap
+msgid "登録の実行"
+msgstr "Registration execution"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:537
+msgid ""
+"\"/api/evp/v1/device/credentials\"コマンドのRUNを実行しデバイスの登録された"
+"ら、実行結果が\"200 OK\"になります。"
+msgstr ""
+"Execute the RUN of \"/api/evp/v1/device/credentials\" command, and the "
+"execution result will be \"200 OK\" when device is registered."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:539
+msgid "image::Result.jpg[デバイス登録結果]"
+msgstr "image::Result.jpg[Device registration result] "
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:540
+#, no-wrap
+msgid "カメラコンテナのデプロイ"
+msgstr "Camera Container Deployment"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:545
+msgid "下記のjsonファイルをインポートします。"
+msgstr "Import the following json files."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:552
+msgid ""
+"下記の環境変数を\"@DeviceSDK-IntegTest-Common-Env-LF2\"の\"INITIAL VALUE\"と"
+"\"CURRENT VALUE\" に設定します。"
+msgstr ""
+"Set the environment variables of the below table into \"INITIAL VALUE\" and "
+"\"CURRENT VALUE\" of \"@DeviceSDK-IntegTest-Common-Env-LF2\"."
+
+#. type: Table
+#: DeviceSDK_Manual_ja.adoc:564
+#, no-wrap
+msgid ""
+"|変数名|値 \n"
+"|EVP_SERVER|EVP HUBのURL \n"
+"|USERNAME|EVP HUBログインのためのユーザー名 \n"
+"|PASSWORD|EVP HUBログインのためのパスワード \n"
+"|MODULE_NAME|任意の名前 \n"
+"|MODULE_URL|前の手順で登録したモジュールのURL + \n"
+"例 : dummy.azurecr.io/dummy_module_image:module_version \n"
+"|DEVICE_NAME|任意の名前 \n"
+"|INSTANCE_NAME|任意の名前 \n"
+msgstr ""
+"|VARIABLE|VALUE \n"
+"|EVP_SERVER|EVP HUB URL \n"
+"|USERNAME|Username for EVP HUB login \n"
+"|PASSWORD|Password for EVP HUB login \n"
+"|MODULE_NAME|Any Name \n"
+"|MODULE_URL|URL of the module registered in the previous step. + \n"
+"Example:  dummy.azurecr.io/dummy_module_image:module_version \n"
+"|DEVICE_NAME|Any Name \n"
+"|INSTANCE_NAME|Any Name\n"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:566
+#, no-wrap
+msgid "デプロイの実行"
+msgstr "Deployment execution"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:568
+msgid "下記の順にPostManのcollectionを実行します。"
+msgstr "Execute the PostMan collection in the following order."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:570
+msgid ""
+"\"DeviceSDK-IntegTest-Util-Module\"の\"Get Token\"の\"SEND\"を実行します。"
+msgstr ""
+"Execute \"SEND\" of \"Get Token\" in \"DeviceSDK-IntegTest-Util-Module\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:571
+msgid ""
+"\"DeviceSDK-IntegTest-Util-Module\"の\"Create Module\"の\"SEND\"を実行しま"
+"す。"
+msgstr ""
+"Execute \"SEND\" of \"Create Module\" in \"DeviceSDK-IntegTest-Util-Module\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:572
+msgid "\"DeviceSDK-IntegTest-Setup-Deploy\"全体の\"RUN\"を実行します。"
+msgstr "Execute \"RUN\" of the whole \"DeviceSDK-IntegTest-Setup-Deploy\"."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:573
+#, no-wrap
+msgid "実行結果の確認"
+msgstr "Execution result check"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:575
+msgid ""
+"モジュールのデプロイに成功すると、下記の様に2個のコンテナが実行されます。"
+msgstr ""
+"Two containers are executed as in below when module deployment succeeds."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:577
+msgid "image::image2022-11-2_22-9-51.png[デプロイ実行結果]"
+msgstr "image::image2022-11-2_22-9-51.png[] "
+
+#. type: Title ===
+#: DeviceSDK_Manual_ja.adoc:578
+#, no-wrap
+msgid "サンプルアプリケーションの実行"
+msgstr "Running the sample application"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:579
+#, no-wrap
+msgid "テストスクリプト"
+msgstr "Test script"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:582
+msgid "下記のzipファイルを解凍し、jsonファイルをPostManにインポートします。"
+msgstr "Unzip the following zip file and import json file into PostMan."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:585
+#, no-wrap
+msgid "テストスクリプトの内容"
+msgstr "Test script contents"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:588
+msgid ""
+"DeviceSDK-IntegTest-GetState.postman_collection.json + Get-Stateを行うテスト"
+"スクリプトです。"
+msgstr ""
+"DeviceSDK-IntegTest-GetState.postman_collection.json + Test script to "
+"perform Get-State."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:592
+msgid ""
+"DeviceSDK-IntegTest-StartStopUploadInference.postman_collection.json + "
+"\"StartUploadInference\"/\"StopUploadInference\"コマンドを実行し、 + 推論デー"
+"タの送信を開始・停止するためのテストスクリプトです。"
+msgstr ""
+"DeviceSDK-IntegTest-StartStopUploadInference.postman_collection.json + Test "
+"script to start and stop the inference data transmission by executing "
+"\"StartUploadInference\"/\"StopUploadInference\" command. "
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:594
+msgid ""
+"出力先ディレクトリは\"/misc/smartcamera/dnn_out\"になります。 テスト前にディ"
+"レクトリを作る必要があります。"
+msgstr ""
+"Output directory is \"/misc/smartcamera/dnn_out\". +Directory must be "
+"created before the test."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:598
+msgid ""
+"DeviceSDK-IntegTest-StreamingSetup.postman_collection.json + "
+"\"StreamingSetup\"コマンドを実行しストリームの送信を開始するテストスクリプト "
+"テストスクリプト内のIPアドレスはテスト前にターゲットデバイスのIPアドレスに変"
+"更する必要があります。 + 下図のハイライトを参照"
+msgstr ""
+"DeviceSDK-IntegTest-StreamingSetup.postman_collection.json + Test script to "
+"start sending stream by executing \"StreamingSetup\" command. The IP address "
+"in test script must be changed to the IP address of the target device before "
+"the test.  + See highlights in the following figure."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:600
+msgid "image::image2022-10-4_10-55-22.png[]"
+msgstr "image::image2022-10-4_10-55-22.png[]"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:604
+msgid ""
+"VLC media playerでストリームを受信するために使用するネットワーク環境に合わせ"
+"たURLアドレスを設定します。 + 設定メニュー : Media menu -> Open Network "
+"Stream -> Network -> Network Protocol + rtsp://root:root@192.168.1.xxx:554/"
+"unicast/stream"
+msgstr ""
+"Set a URL address to suit the used network environment for receiving stream "
+"at VLC media player.  + Setup menu : Media menu -> Open Network Stream -> "
+"Network -> Network Protocol + rtsp://root:root@192.168.1.xxx:554/unicast/"
+"stream"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:607
+msgid ""
+"DeviceSDK-IntegTest-ConfigState.postman_collection.json + Config&Stateを実行"
+"するテストスクリプトです。(パラメータテスト)"
+msgstr ""
+"DeviceSDK-IntegTest-ConfigState.postman_collection.json + Test script to "
+"execute Config&State. (Parameter test)"
+
+#. type: Title =====
+#: DeviceSDK_Manual_ja.adoc:608
+#, no-wrap
+msgid "使用方法"
+msgstr "Usage instructions"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:610
+msgid "\"Collections\"のサーチパッド(左のスライドバー)をクリックします。"
+msgstr "Click the search pad (slide bar on the left) of \"Collections\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:611
+msgid ""
+"\"Import\"ボタンをクリックし、jsonファイルをjsonウインドウにドラッグしてイン"
+"ポートします。"
+msgstr ""
+"Click the \"Import\" button and drag json file to the json window to import."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:612
+msgid ""
+"\"Collections\"にテストスクリプトが表示されるので、\"Collections\"のスクリプ"
+"トをクリックします。"
+msgstr ""
+"Test script is displayed in the \"Collections\". Click the script in the "
+"\"Collections\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:614
+msgid "image::Run_Inport_En.jpg[]"
+msgstr "image::Run_Inport_En.jpg[]"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:616
+msgid ""
+"右上に表示される\"Run\"ボタンをクリックし、次に表示される\"RuneviceSDK-"
+"xxxxx\"ボタン(青)をクリックしてテストスクリプトを実行します。"
+msgstr ""
+"Click the \"Run\" button displayed on the upper right to display "
+"\"RuneviceSDK-xxxxx\" (blue) button. Click that button to run the test "
+"script."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:618
+msgid ""
+"すべての実行結果が\"Pass\"となれば、テストは完了となります。 もしエラーが発生"
+"していたら、\"FAILED\"の赤色の実行結果メッセージが表示されます。"
+msgstr ""
+"The test is complete when all results are \"Pass\".  If an error occurs, a "
+"\"FAILED\" execution result message in red is displayed."
+
+#. type: Title =====
+#: DeviceSDK_Manual_ja.adoc:619
+#, no-wrap
+msgid "テストスクリプトの補足"
+msgstr "Test script supplementary note"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:621
+msgid ""
+"ダイレクトコマンドのテストの場合、実行結果の成否はレスポンスのJSONデータの"
+"キー(Result)・値(Success)で判定します。"
+msgstr ""
+"In the direct command test, the execution result success or failure is "
+"judged by the response JSON data key (Result) and value (Success)."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:622
+msgid ""
+"config&stateコマンドのテストの場合、判定はコンフィギュレーションのパラメータ"
+"とGet-Stateによるパラメータを比較して行います。"
+msgstr ""
+"In the config&state command test, the judgement is made by comparing "
+"configuration and Get-State parameters."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:623
+msgid ""
+"判定条件は、テストスクリプトの\"GET\"メソッドの\"Tests\"パートに記載されてい"
+"ます。"
+msgstr ""
+"The judgement conditions are stated in \"Tests\" parts of \"GET\" method in "
+"test script."
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:624
+#, no-wrap
+msgid "SensCord Viewer"
+msgstr "SensCord Viewer"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:626
+msgid ""
+"LANポートにLANケーブルを挿入し、ネットワーク上のPCと接続可能な状態にします。"
+msgstr ""
+"Insert the LAN cable into LAN port and enable connection to a PC on a "
+"network. "
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:627
+msgid "IPアドレスを設定します。"
+msgstr "Set IP address."
+
+#. type: Block title
+#: DeviceSDK_Manual_ja.adoc:628
+#, no-wrap
+msgid "eth0"
+msgstr "eth0"
+
+#. type: delimited block -
+#: DeviceSDK_Manual_ja.adoc:631
+#, no-wrap
+msgid "# ifconfig eth0 XXX.XXX.XXX.XXX  netmask 255.255.255.0 broadcast XXX.XXX.X.XXX\n"
+msgstr "# ifconfig eth0 XXX.XXX.XXX.XXX  netmask 255.255.255.0 broadcast XXX.XXX.X.XXX\n"
+
+#. type: delimited block -
+#: DeviceSDK_Manual_ja.adoc:634
+#, no-wrap
+msgid ""
+"Ex. )\n"
+"$ ifconfig eth0 192.168.0.100 netmask 255.255.255.0 broadcast 192.168.0.255\n"
+msgstr ""
+"Ex. )\n"
+"$ ifconfig eth0 192.168.0.100 netmask 255.255.255.0 broadcast 192.168.0.255\n"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:637
+msgid "ブラウザを開きアドレスバーに\"<board IP address>:3000\"を入力します。"
+msgstr ""
+"Open a browser and enter \"<board IP address>:3000\" in the address bar."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:638
+msgid "\"<board IP address>:3000\"は権限を求めてくるので、許可を行います。"
+msgstr ""
+"Authorization for \"<board IP address>:3000\" will be requested, so allow it."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:639
+msgid ""
+"左上のツリーから\"Image Stream -> isp_imx8_image -> image\"をチェックします。"
+msgstr ""
+"Select \"Image Stream -> isp_imx8_image -> image\" from the upper left tree "
+"and check the box."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:640
+msgid "ビューワーがスタートするので、画面の右にある\"Streaming\"ボタンを押す。"
+msgstr ""
+"Viewer is started and press \"Streaming\" button on the right side of the "
+"screen. "
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:641
+msgid "ビューワーに画像が表示されるのを確認します。"
+msgstr "Verify that the image appears in the viewer."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:643
+msgid "Viewer sample"
+msgstr "Viewer sample"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:645
+msgid "image::SensCord-Viewer.png[]"
+msgstr "image::SensCord-Viewer.png[]"
+
+#. type: Title ====
+#: DeviceSDK_Manual_ja.adoc:646
+#, no-wrap
+msgid "フレーム画像の保存方法"
+msgstr "How to save a frame image"
+
+#. type: Title =====
+#: DeviceSDK_Manual_ja.adoc:647
+#, no-wrap
+msgid "保存対象"
+msgstr "The object to save"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:649
+msgid "RAW (4032x3040 BayerRGGB)"
+msgstr "RAW (4032x3040 BayerRGGB)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:650
+msgid "YC (2016x1520 NV16)"
+msgstr "YC (2016x1520 NV16)"
+
+#. type: Title =====
+#: DeviceSDK_Manual_ja.adoc:651
+#, no-wrap
+msgid "Postman と SensCord viewerの使用方法"
+msgstr "How to use Postman and SensCord viewer"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:653
+msgid ""
+"<<CameraContainerDeploy,カメラコンテナのデプロイ>>の章に従って、コンテナを立"
+"ち上げる。"
+msgstr ""
+"Start the container in accordance with the <<CameraContainerDeploy,Camera "
+"Contianer Deployment>> chapter. "
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:655
+msgid ""
+"下記のスクリプトをPostmanにインポートします。 DeviceSDK-IntegTest-"
+"DrvModeFullres.postman_collection.json"
+msgstr ""
+"Import the following script to Postman. + DeviceSDK-IntegTest-DrvModeFullres."
+"postman_collection.json"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:656
+msgid "Refsys基板を動作させ、カメラコンテナが起動するのを待ちます。"
+msgstr "Run the Refsys board and wait for the camera container to activate."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:657
+msgid "PostmanでCollectionにスクリプトを追加し実行します。"
+msgstr "Add script to Collection in Postman and execute it."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:658
+msgid "このとき、各実行ステップでエラーが表示されないことを確認します。"
+msgstr "Make sure that there is no error displayed at each execution step."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:661
+msgid ""
+"SensCord Viewerを起動します。 PCからRefsys基板のSensCord Serverに接続しま"
+"す。 SensCord Viewerを参照し、PCからRefsys board基板上のSensCord Viewerに接続"
+"します。"
+msgstr ""
+"Activate the SensCord Viewer. + Connect to SensCord Server of Refsys board "
+"from PC. Refer to SensCord Viewer and connect to SensCord Viewer on Refsys "
+"board from PC."
+
+#. type: Title =====
+#: DeviceSDK_Manual_ja.adoc:662
+#, no-wrap
+msgid "RAWデータの保存 (4032x3040 BayerRGGB)"
+msgstr "RAW data storage (4032x3040 BayerRGGB)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:664
+msgid ""
+"画面左のツリーの\"Image Stream -> imx500_image → image\"にチェックを付けま"
+"す。"
+msgstr ""
+"Select \"Image Stream -> imx500_image → image\"  from the upper left tree "
+"and check the box."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:665
+msgid "右のエリアの解像度表示が\"4032 x 3040\"になっていることを確認します。"
+msgstr ""
+"Check that the resolution display in the right area is \"4032 x 3040\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:666
+msgid "ストリーミングを開始する( RAWが選択されているときは画面は更新されない )"
+msgstr "Start the streaming (screen is not updated when RAW is selected.)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:668
+msgid ""
+"保存画像の出力先ファイルパスを設定します。 パスが設定されていないときは、ルー"
+"トディレクトリに作成される。"
+msgstr ""
+"Specify the output file path for saved images. If the path is not specified, "
+"the file is created into the route directory."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:669 DeviceSDK_Manual_ja.adoc:681
+msgid "保存ボタンを押し保存を開始します。"
+msgstr "Press \"Save\" button and start the storage."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:670 DeviceSDK_Manual_ja.adoc:682
+msgid "停止ボタンを押し保存を停止します。"
+msgstr "Press \"Stop\" button and stop the storage."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:671 DeviceSDK_Manual_ja.adoc:683
+msgid "保存が停止した後にRefsys基板の指定したフォルダのファイルを確認します。"
+msgstr ""
+"After the data storage is stopped, check the files in the specified folder "
+"of the Refsys board."
+
+#. type: Target for macro image
+#: DeviceSDK_Manual_ja.adoc:672
+#, no-wrap
+msgid "image2022-10-14_10-56-4.png"
+msgstr "image2022-10-14_10-56-4.png"
+
+#. type: Title =====
+#: DeviceSDK_Manual_ja.adoc:674
+#, no-wrap
+msgid "YCデータの保存 (2016x1520 NV16)"
+msgstr "YC data storage (2016x1520 NV16)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:676
+msgid ""
+"画面左のツリーの\"Image Stream -> isp_imx8_image → image\"にチェックを付けま"
+"す。"
+msgstr ""
+"Select \"Image Stream -> isp_imx8_image -> image\" the upper left tree and "
+"check the box."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:677
+msgid "右のエリアの解像度表示が\"2016 x 1520\"になっていることを確認します。"
+msgstr "Check that the resolution display in right area is \"2016 x 1520\"."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:678
+msgid "ストリーミングを開始します。"
+msgstr "Start the streaming."
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:680
+msgid ""
+"出力ファイルパスを設定します。 パスが設定されていないときは、ルートディレクト"
+"リに作成される。"
+msgstr ""
+"Specify the output file path. If the path is not specified, the file is "
+"created into the route directory."
+
+#. type: Target for macro image
+#: DeviceSDK_Manual_ja.adoc:684
+#, no-wrap
+msgid "image2022-10-14_10-56-26.png"
+msgstr "image2022-10-14_10-56-26.png"
+
+#. type: Title ==
+#: DeviceSDK_Manual_ja.adoc:686
+#, no-wrap
+msgid "APIリスト(ホスト側)"
+msgstr "API list (host-side)"
+
+#. type: Plain text
+#: DeviceSDK_Manual_ja.adoc:688
+msgid "別紙参照"
+msgstr "See a separate document."
+
+#, no-wrap
+#~ msgid "ハードウェア構成"
+#~ msgstr "Hardware configuration"
+
+#, no-wrap
+#~ msgid "回路図"
+#~ msgstr "Circuit diagram"
+
+#~ msgid ""
+#~ "回路図については「DeviceSDK_Reference_Hardware_SircuitDiagram.pdf」を参照"
+#~ "してください。 +"
+#~ msgstr ""
+#~ "Refer to “DeviceSDK_Reference_Hardware_SircuitDiagram.pdf” for circuit "
+#~ "diagram. +"
