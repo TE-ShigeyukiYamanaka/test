@@ -1,9 +1,647 @@
-== SSD接続方法
+= image:../AITRIOS-Logo_Blue_w480.png[width="200"] pass:[<br/>] T4 Device SDK Manual pass:[<br/>]image:Draft_Watermark.png[fit=none,pdfwidth=40%] 
+:sectnums:
+:doctype: book
+:sectnumlevels: 3
+:author: Copyright 2022 Sony Semiconductor Solutions Corporation
+:revdate: YYYY - MM - DD
+:revnumber: x.x.x
+:version-label: Version: 
+:toc:
+:toc-title: 目次
+:toclevels: 2
+ifndef::imagesdir[:imagesdir: ../../../images/T4_Device_SDK]
+chapter-label: 1
+:lang: ja
 
-SSDを以下の位置に設置。
+<<<
 
-image::NX215B_inside.png[SSD接続方法, width=19000 ]
+==  Introduction
+This chapter provides the overview of the Device SDK Manual and the preconditions of use. +
 
-== テスト
+=== Overview of this document
+This is a manual which provides how to use AITRIOS Device SDK. +
 
-テストコメントを記載。
+Refer to the following document for the hardware circuit diagram which is the base of the Device SDK. + “DeviceSDK_Reference_Hardware_SircuitDiagram.pdf” +
+
+See the following document for the communication API between SCS and edge device. + “DeviceSDK_Cloud-Edge_IF.xlsx”
+
+
+=== Related documents and submissions
+* DeviceSDK_Reference_Hardware_SircuitDiagram.pdf + Hardware circuit diagram which is the base of the Device SDK. +
+* DeviceSDK_Cloud-Edge_IF.xlsx + Specification of communication API between SCS and edge device. +
+* evp-device-agent-1.0.1.zip + evp device agent
+* PostMan script
+** Device-Registration.postman_collection.zip
+** Postman_Script.zip
+** DeviceSDK-IntegTest-Util-Module.postman_collection.json
+** DeviceSDK-IntegTest-Setup-Deploy.postman_collection.json
+** @DeviceSDK-IntegTest-Common-Env-LF2.postman_environment.json
+** DeviceSDK-IntegTest-DrvModeFullres.postman_collection.json
+
+=== What is Device SDK?
+Device SDK is a reference software of AITRIOS standard-compliant camera which is created by Sony Semiconductor Solutions Cooperation (hereinafter referred as SSS). Device SDK is built on the reference hardware offered by SSS. Refer to "<<HardwareConstitution,Hardware configuration>>" for the outline of reference hardware offered from SSS. Camera vendors will be able to accomplish the basic functions of AITRIOS standard-compliant cameras in a short period of time by developing with Devise SDK in base. +
+
+<<<
+
+[[HardwareConstitution]]
+== Hardware config
+=== Hardware outline
+The following is the function outline of reference hardware created by SSS. +
+
+[width="100%", cols="10%,22%,68%", options="header"]
+|===
+2+<|Type|Comment 
+.3+<.<|Key Device
+        |Image sensor|IMX500 4056x3040 pix, 1.55um, 1/2.3’’
+        |Soc|NXP i.MX8M plus +
+             EMMC 32GB / DRAM 6GB
+        |IMX500 ROM|16MB×2
+.8+<.<|I/F
+        |HDMI|Mini HDMI(Inside the cover)
+        |Wi-Fi|802.11b/g/n
+        |Bluetooth|BT5.0
+        |Ethernet|1000 Base-T(PoE), RJ45
+        |USB|USB-A(Host 3.0) +
+             USB-C(Only Device 3.0) (Inside the cover)
+        |UART|3Port (FTDI is on board, IF connector is USB-micro B) (Inside the cover)
+        |Audio In/Out|Mic IN(2ch)
+        |Power supply|USB PD(9, 12, 20V) / PoE(IEEE802.3 af, RJ45)
+.2+<.<|UI
+        |LED|3pcs x bi-color(Green, Red) LED for service +
+             2pcs of single color(Yellow, Green) LED for Ether link
+        |External switch|1 pcs Reset switch for Factory Reset
+|===
+
+<<<
+
+=== Names of hardware parts
+* Backside +
+
+image::PXL_20221122_102212256_trim.jpg[width=250]
+
+* Right side +
+
+image::PXL_20221122_102117758_trim.jpg[width=250]
+
+* Left side +
+
+image::PXL_20221122_102126703_trim.jpg[width=250]
+
+* Top side +
+
+image::PXL_20221122_102146831_trim.jpg[width=250]
+
+
+<<<
+
+== Software configuration
+This chapter provides software configuration of Device SDK. +
+
+=== Reference OS
+NXP Yocto is used as the reference OS. See link:https://www.nxp.com/docs/en/user-guide/IMX_YOCTO_PROJECT_USERS_GUIDE.pdf["i.MX Yocto Project User's Guide (nxp.com)"] for details on Yocto. +
+
+=== Overall configuration
+The Device SDK consists of software that runs on the host software and software that runs on the container. +
+
+image::AITRIOS_CertifiedSystemStreamingSoftwareStack.png["Overall configuration"]
+
+<<<
+
+=== Module description
+Device SDK has the following modules. +
+
+[wdith="100%", cols="30%,15%,45%", options="header"]
+|===
+|Component|Location|Responsibility
+|Proxy|Container|Module to sort between SCS Edge Agent and Vendor Extension Agent processing
+|Edge Agent|Container|Module to distribute commands from SCS to subordinate App.
+|Video Output App|Container|Video Network Streaming Application
+|Video Record App|Container|Record MP4 Video on USB?
+|Image Output App|Container|Output Viewing/Input Tensor image to NFS, SSHFS or blob.
+|Inference Output App.|Container|Output Inference data to MQTT, NFS, SSHFS or blob.
+|One-Shot Image App.|Container|Reply Viewing/Input Tensor image via REST API response.
+|GStreamer|Container|Application to conduct Streaming process for Viewing.
+|VideoIF|Container|Layer used to manage GStreamer Path construction, etc.
+|OTA App.|Container|OTA Application.
+|System App.|Container|System maintenance Application.
+|PQA App.|Container|Picture QuAlity Application.
+|Sensor Util App.|Container|Sensor Access Utility Application.
+|Inference Comp.|Container|Provides inference processing results to App.
+|Install App.|Host|Initial Setup (IP Address, NTP, etc...) Application.
+|YC Comp. [SPL]|Host|Provides the Viewing data acquired from Sensor to Client (SensCord).
+|IMX500 Comp. [SPL]|Host|Provides I.T./O.T./RAW image data acquired from Sensor to Client (SensCord).
+|eSDK|Host|IMX500 access library
+|===
+
+=== tekitou
+syoutuika
+
+<<<
+
+== Device SDK build procedure
+=== Build procedure
+==== Build execution (Host environment) +
+
+. Configure environment settings.
+. Execute build. +
+
+See README.md of aitrios-sdk-device-otb-imx8mp-host-sdk for build procedure. +
+
+URL: https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-otb-imx8mp-host-sdk
+
+After executing make command, confirm that the following files are created in the workspace/build/tmp/deploy/images /refsys-imx8mp. +
+
+   ** imx-image-full-refsys-imx8mp.wic.bz2
+   ** imx-boot-refsys-imx8mp-sd.bin-flash_evk
+
+[[RunBuild_Container]]
+==== Build execution (Container environment)
+ . Configure environment settings.
+ . Execute build.
+
+See README.md of aitrios-sdk-device-otb-sc-container-sdk for build procedure.
+
+URL: link:https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-otb-sc-container-sdk[]
+
+After executing make command, confirm that the following file (Docker image) is created in workspace/deploy. +
+
+  *** smartcamera.tar.gz
+
+The created image is used to upload Docker image to EVP Hub at “<<DockerImageRegistrationProcedure,Docker image registration procedure>>". +
+
+<<<
+
+== Installation method
+[[DockerImageRegistrationProcedure]]
+=== Docker image registration procedure
+==== Registration procedure of Docker image to EVP Hub
+
+Registers the smartcamera.tar.gz created in "<<RunBuild_Container,Build execution (Container environment) >>" to EVP Hub.
+
+. Load Docker image. +
++
+....
+  $ docker load -i smartcamera.tar.gz
+....
+
+. Register the Module. + Upload Docker image to EVP Hub and register it as a Module. + See the following instruction for registration. +
+//link:https://www.tool.sony.biz/confluence/pages/viewpage.action?pageId=2278155848[Module登録方法 - 2021_SSS_ReferenceSystem - Confluence (sony.biz)] +
+"<<ModuleRegistrationProcedure,Module regsitration method >>"
+
+. Execute Deployment. + Configure the Deployment using the MODULE_ID and MODULE_NAME acquired at Module registration. + See “<<EvpControlMethod,Device control using EVP>>” for or instructions on how to configure and execute Deployment. +
+
+[[ModuleRegistrationProcedure]]
+==== Module registration procedure
+. Verify the required information. + Prepare the following information on the verification environment.
+ .. Information on the container registry to be used.
+  ... Container registry URL (e.g.: dummy.azurecr.io)
+  ... Container registry username (e.g.: dummy_cr_user)
+  ... Container registry password (e.g.: dummy_cr_password)
+ .. Information related to EVP Module
+Environment in which Docker image (e.g.: dummy_module_image.tar) or Module is registered to local Docker Registry (e.g.: dummy_module_image: module_version).
+.. Information on the EVP Hub to be used.
+ ... EVP Hub URL (e.g.: https://dummy.cloudapp.azure.com)
+ ... EVP Hub port number (e.g.: 443)
+ ... EVP Hub username (e.g.: dummy_evp_user)
+ ... EVP Hub password (e.g.: dummy_evp_password)
+
+. Upload container. +
+ ...... Set environment variables according to the environment.
++
+....
+export DOCKER_REGISTRY="dummy.azurecr.io" ;
+export DOCKER_USER="dummy_cr_user" ;
+export DOCKER_PASSWORD="dummy_cr_password" ;
+export MODULE_BASE_NAME="dummy_module_image" ;
+export MODULE_VERSION="module_version" ;
+export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;
+....
++
+When Docker image of Module is obtained at Tarball, import it to local Docker Registry. + In this example, the name of the imported image is assumed as the dummy_module_image:latest.
++
+....
+docker load -i dummy_module_image.tar
+....
++
+ ...... Tag the loaded container.
++
+....
+docker tag dummy_module_image:latest $DOCKER_REGISTRY/$MODULE_IMAGE_NAME
+....
++
+ ...... Login to ACR.
++
+....
+docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_PASSWORD
+....
++
+ ...... Push container.
++
+....
+docker push $DOCKER_REGISTRY/$MODULE_IMAGE_NAME
+....
+
+. Registers Module to EVP Hub. +
+ ...... Set environment variables according to the environment. +
++
+....
+export DOCKER_REGISTRY="dummy.azurecr.io" ;
+export DOCKER_USER="dummy_cr_user" ;
+export DOCKER_PASSWORD="dummy_cr_password" ;
+export MODULE_BASE_NAME="dummy_module_image" ;
+export MODULE_VERSION="module_version" ;
+export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;
+export MODULE_NAME=${MODULE_BASE_NAME}_${MODULE_VERSION} ;
+export EVPHUB_URL="https://dummy.cloudapp.azure.com:443"
+export EVPHUB_USER="dummy_evp_user"
+export EVPHUB_PASS="dummy_evp_password"
+export MODULE_HASH="0000000000000000000000000000000000000000";
+....
++
+ ...... Login to EVP Hub and obtain token.
++
+....
+export AUTHTOKEN=$( \
+curl -s --location --request POST "$EVPHUB_URL/api/auth/login" \
+--header 'Content-Type: "application/json"' \
+--header 'Accept: "application/json"' \
+--data-raw '{ "username":"'"$EVPHUB_USER"'", "password":"'"$EVPHUB_PASS"'" }' \
+  | tee /dev/stderr | jq -r '.token' )
+....
++
+ ...... Register Module to EVP Hub and obtain Module ID.
++
+....
+export MODULE_ID=$( \
+curl --location --request POST "$EVPHUB_URL/api/evp/v1/module" \
+--header 'Content-Type: application/json' \
+--header "X-Authorization: Bearer: $AUTHTOKEN" \
+--data-raw '{"name": "'"$MODULE_NAME"\
+'","type": "Linux modules","resourceUrl":"'\
+"$DOCKER_REGISTRY"'/'"$MODULE_IMAGE_NAME"\
+'","entryPoint": "main","hash": "'"$MODULE_HASH"'"}' \
+  | tee /dev/stderr | jq -r '.id.id' )
+....
++
+Make a note on MODULE_ID and MODULE_NAME as they will be needed at deploying module. +
++
+[NOTE]
+====
+When using Postman, +
+
+. import the following script to Postman. + Module creation/deletion script: DeviceSDK-IntegTest-Util-Module.postman_collection.json +
+
+. Update Postman Environment information according to container registry environments, etc. + Execute the following at DeviceSDK-IntegTest-Util-Module of Collections. +
+
+* Select Get Token and click Send button in the upper right corner of the screen. +
+* Select Create Module and click Send button in the upper right corner of the screen.
+====
+
+
+=== Board startup procedure
+==== Image writing procedure (on Windows)
+. Create sdk_image folder. +
+. Download uuu.exe from the below page and store it in the sdk_image folder. + https://github.com/NXPmicro/mfgtools/releases
+
+. Store the following build artifacts in the sdk_image folder. +
+ ** imx-image-full-refsys-imx8mp.wic.bz2
+ ** imx-boot-refsys-imx8mp-sd.bin-flash_evk
+
+. Wire the board. + Wire the board and set BootSW. +
+
+  ...... Insert USB cable into USB Type-C and connect the board with PC. +
+  ...... Turn on the Boot SW. + Flip the switch to the opposite side of the USB port for power delivery. +
+  ...... Connect USB Type-C power delivery to power supply. + When USB is connected, the power of the board is turned on. +
++
+image::ImageWritingProcedure_BoardWiring.png[board wiring]
++
+
+. Write an image on the board +
++
+Open command prompt. Move to sdk_image folder and execute the following command. +
++
+....
+ .\uuu.exe -b emmc_all ..\imx-boot-refsys-imx8mp-sd.bin-flash_evk ..\imx-image-full-refsys-imx8mp.wic.bz2
+....
++
+When writing is completed, the display will look like the following. Turn off the board power once. +
++
+....
+ uuu (Universal Update Utility) for nxp imx chips -- libuuu_1.4.107-14-g519c261
+ Success 1    Failure 0
+ 
+ 
+ 1:141    8/ 8 [Done                                  ] FB: done
+ 1:21     1/ 1 [=================99%================> ] boot-refsys-imx8mp-sd.
+....
+
+==== Board startup procedure
+. Connect serial console. +
+ ...... Insert USB cable into USB Serial and connect the board with PC. +
+ ...... Launch Teraterm. Select the third serial port as the connection destination and press OK. + When the first port is COM11, select COM13. +
+ ...... Select serial port from menu bar setting and change the speed to 115200. +
+
+. Board startup +
+ ...... Turn off the Boot SW. + Flip the switch to the side of the USB port for power delivery.
+ ...... Connect USB Type-C power delivery to power supply. + When USB is connected, the power of the board is turned on. +
+
+. . Login
+ ...... Check that refsys-imx8mp login: is displayed in serial console after power activation. +
+ ...... Input root in the username and press Enter. +
+  Password is not required. +
+ ...... Check that the last login date and time is displayed, and the prompt response is root@refsys-imx8mp: +
+
+<<<
+
+== Various setting methods
+
+=== EVP Hub connection preparation 
+Confirm the following items.
+
+==== Information on the EVP Hub to be used.
+* EVP Hub MQTT URL (e.g.: mqtt-dummy.cloudapp.azure.com)
+* EVP Hub MQTT port number (e.g.: 1111)
+* EVP Hub certificate file (mqttserver.pub.pem) 
+
+NOTE: Details are stated in "<<CreateServerCertificates,Creating Server Certifcates>>".
+
+==== Information on the container registry to be used.
+* Container registry URL (e.g.: dummy.azurecr.io)
+* Container registry login Username (e.g.: dummy_cr_user)
+* Container registry password (e.g.: dummy_cr_password)
+
+==== Certificates
+* Client certificate (mqttclient.nopass.pem)
+
+NOTE: Details are stated in "<<CreateClientCertificates,Creating Client Certificates>>".
+
+=== EVP Hub connection certificate preparation
+
+[[CreateClientCertificates]]
+==== Creating Client Certificates ( cert.pem & mqttclient.nopass.pem )
+Execute the following commands.
+
+....
+$ unzip evp-device-agent-1.0.1.zip
+$ cd evp-device-agent-1.0.1/evp_agent/test/tests
+$ ./simplest-cert.sh
+$ cat key.pem cert.pem > mqttclient.nopass.pem
+....
+
+[[CreateServerCertificates]]
+==== Creating Server Certificates (mqttserver.pub.pem)
+Save the following description content in a file as ‘mqttserver.pub.pem’.
+
+.mqttserver.pub.pem
+----
+-----BEGIN CERTIFICATE-----
+MIID/TCCAuWgAwIBAgIQLU8JQOB/adPfdboTqUHJrzANBgkqhkiG9w0BAQsFADB+
+MQswCQYDVQQGEwJKUDElMCMGA1UEChMcU29ueSBTZW1pY29uZHVjdG9yIFNvbHV0
+aW9uczEqMCgGA1UECxMhU3RhZ2luZyBFVlAgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
+MRwwGgYDVQQDExNTdGFnaW5nIEVWUCBSb290IENBMB4XDTIxMDExMzE5MzEwMloX
+DTI2MDExMjE5MzEwMlowfjELMAkGA1UEBhMCSlAxJTAjBgNVBAoTHFNvbnkgU2Vt
+aWNvbmR1Y3RvciBTb2x1dGlvbnMxKjAoBgNVBAsTIVN0YWdpbmcgRVZQIENlcnRp
+ZmljYXRlIEF1dGhvcml0eTEcMBoGA1UEAxMTU3RhZ2luZyBFVlAgUm9vdCBDQTCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKS5j/5dvgl0a86TwGyW4G+n
+OIeXt8ASmUvSpAmAnfdpmTOeDJzCNVVCYlZc1chicGBP7xOgwL3r54P6RmeXTUNU
+M0wx6FXT7KKBZLU/WfrxDpxCw8c5fEUdDNod0vJB96mwNI4SJFsEKBmWewdjrRCa
+BouTxN5A0LCt4CqKDfdQIE0Cb5lV13SepX9Um+EyHPGv3yfqvfTsFCChozz3DGS9
+XyO68Vj/or3zh7peAl8VE4B7EufPYkl7xt2F3mt3YGTFWPzZGlVmYHKSjStG08e2
+X+h9LQY4OCYfTZn8nT56Z+9Mh9eKibLvH+qHhJWp3j8vzyHaqLGrBhB6XjHr+W0C
+AwEAAaN3MHUwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0O
+BBYEFDRVYKu5QaDtz7B4zjLZhZ1CnFOYMDMGA1UdHwQsMCowKKAmoCSGImh0dHBz
+Oi8vZXZwLXN0YWdpbmcubWlkb2t1cmEuanAvY2EwDQYJKoZIhvcNAQELBQADggEB
+AGRKUDCv3geJw4tjTULxPr6GzOkSt4HetrFJsOUSt6uItiFVBEuSNsDpBHJ9zz8J
++PU1O1g44JtyBEDfOKiat6D9JVvDEZ7h6+kUYMiJtu+sjDJOJQLH0JqlJ7MWfrQQ
+b5ifuXqQd+fAjqqE/kzg84I1wlsJSJu371feMpN5u1QCwpvixllZx1OmEIxS5feL
+wCUKHiuJvDcmJpkvBsb8Nl0uUJygxKQ2ARMKBJH9SXLK/zUDPWMdU3V/IZRArykJ
+xxqx46i0/xaNkXTD5SPM6qPTeGCdFyZfQzEigkhuzlgIpAKQZFvdauRjbLZgSMtA
+rCzMXa5C/VW9ne+vETEzJEg=
+-----END CERTIFICATE-----
+----
+
+=== Board initial setup procedure
+Prepare the following initial setup files.
+
+* EVP Runtime setup file (evp_setup_info.txt)
+
+.evp_setup_info.txt
+----
+Address:mqtt-dummy.cloudapp.azure.com
+Port:1111
+----
+
+* Container registry setup file (docker_setup_info.txt)
+
+.docker_setup_info.txt
+----
+Registry:dummy.azurecr.io
+User:dummy_cr_user
+Password:dummy_evp_password
+----
+
+* mqttclient.nopass.pem
+* mqttserver.pub.pem
+
+=== IP address confirmation
+Execute the following command from the device serial console.
+
+....
+ip -o -4 a | grep eth0
+....
+        
+[NOTE]
+====
+There is a way of specifying IP address from device connection log of DHCP sever in connected LAN, when serial console is unavailable.
+====
+
+=== Deployment of initial setup files by connecting SSH from a PC on the same network with device
+
+[NOTE]
+====
+When the client PC is using the new openssh (e.g. Ubuntu 22.04), the use of RSA SHA-1 key must be authorized. This setting is executed with the following command.
+
+....
+sudo echo "HostKeyAlgorithms ssh-dss,ssh-rsa" >> /etc/ssh/ssh_config
+....
+====
+
+Execute the following command to send the initial setup file to device from PC.
+
+....
+$ cd /path/to/initialize_files/
+$ scp mqttserver.pub.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/
+$ scp evp_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/
+$ scp docker_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/
+$ scp mqttclient*.nopass.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/mqttclient.nopass.pem
+....
+
+=== Restarting the device
+
+EVP Runtime is activated and executes the connection with EVP Hub when device is restarted by executing reboot command, etc.
+
+<<<
+
+[[EvpControlMethod]]
+== Device control methods using EVP
+
+The device connected to EVP_HUB is controlled by sending REST API command to EVP_HUB. + This section provides the control method using Postman which is a control tool of REST API.
+
+=== Device Registration
+
+==== PostMan script import
+Download and import Device-Registration.postman_collection.zip.
+
+==== Setting environment variables
+Set the environment variables of the below table into "INITIAL VALUE" and "CURRENT VALUE" of "@DeviceRegistration environments."
+
+[wdith="100%", cols="10%,15%", options="header"]
+|===
+|VARIABLE|VALUE 
+|EVP_SERVER|EVP HUB URL
+|USERNAME|Username for EVP HUB login 
+|PASSWORD|Password for EVP HUB login 
+|DEVICE_NAME|Any Name
+|===
+
+==== Certificate settings
+Set the value of cert.pem into "credentialsValue" of "/api/evp/v1/device/credentials" command.
+
+==== Registration execution
+Execute the RUN of "/api/evp/v1/device/credentials" command, and the execution result will be "200 OK" when device is registered.
+
+image::Result.jpg[Device registration result] 
+
+=== Camera Container Deployment
+[[CameraContainerDeploy]]
+
+==== PostMan script import
+Import the following json files.
+
+* DeviceSDK-IntegTest-Util-Module.postman_collection.json
+* DeviceSDK-IntegTest-Setup-Deploy.postman_collection.json
+* @DeviceSDK-IntegTest-Common-Env-LF2.postman_environment.json
+
+==== Setting environment variables
+Set the environment variables of the below table into "INITIAL VALUE" and "CURRENT VALUE" of "@DeviceSDK-IntegTest-Common-Env-LF2".
+
+[wdith="100%", cols="10%,15%", options="header"]
+|===
+|VARIABLE|VALUE 
+|EVP_SERVER|EVP HUB URL 
+|USERNAME|Username for EVP HUB login 
+|PASSWORD|Password for EVP HUB login 
+|MODULE_NAME|Any Name 
+|MODULE_URL|URL of the module registered in the previous step. + 
+Example:  dummy.azurecr.io/dummy_module_image:module_version 
+|DEVICE_NAME|Any Name 
+|INSTANCE_NAME|Any Name
+|===
+
+==== Deployment execution
+Execute the PostMan collection in the following order.
+
+. Execute "SEND" of "Get Token" in "DeviceSDK-IntegTest-Util-Module".
+. Execute "SEND" of "Create Module" in "DeviceSDK-IntegTest-Util-Module".
+. Execute "RUN" of the whole "DeviceSDK-IntegTest-Setup-Deploy".
+
+==== Execution result check
+Two containers are executed as in below when module deployment succeeds.
+
+image::image2022-11-2_22-9-51.png[] 
+
+=== Running the sample application
+==== Test script
+
+Unzip the following zip file and import json file into PostMan.
+
+* Postman_Script.zip
+
+==== Test script contents
+* DeviceSDK-IntegTest-GetState.postman_collection.json + Test script to perform Get-State.
+
+* DeviceSDK-IntegTest-StartStopUploadInference.postman_collection.json + Test script to start and stop the inference data transmission by executing "StartUploadInference"/"StopUploadInference" command. 
+** Output directory is "/misc/smartcamera/dnn_out". +Directory must be created before the test.
+* DeviceSDK-IntegTest-StreamingSetup.postman_collection.json + Test script to start sending stream by executing "StreamingSetup" command. The IP address in test script must be changed to the IP address of the target device before the test. + See highlights in the following figure.
+
+image::image2022-10-4_10-55-22.png[]
+
+Set a URL address to suit the used network environment for receiving stream at VLC media player. + Setup menu : Media menu -> Open Network Stream -> Network -> Network Protocol + rtsp://root:root@192.168.1.xxx:554/unicast/stream
+
+* DeviceSDK-IntegTest-ConfigState.postman_collection.json + Test script to execute Config&State. (Parameter test)
+
+===== Usage instructions
+* Click the search pad (slide bar on the left) of "Collections".
+* Click the "Import" button and drag json file to the json window to import.
+* Test script is displayed in the "Collections". Click the script in the "Collections".
+
+image::Run_Inport_En.jpg[]
+
+* Click the "Run" button displayed on the upper right to display "RuneviceSDK-xxxxx" (blue) button. Click that button to run the test script.
+* The test is complete when all results are "Pass". If an error occurs, a "FAILED" execution result message in red is displayed.
+
+===== Test script supplementary note
+* In the direct command test, the execution result success or failure is judged by the response JSON data key (Result) and value (Success).
+* In the config&state command test, the judgement is made by comparing configuration and Get-State parameters.
+* The judgement conditions are stated in "Tests" parts of "GET" method in test script.
+
+==== SensCord Viewer
+* Insert the LAN cable into LAN port and enable connection to a PC on a network. 
+* Set IP address.
+
+.eth0
+----
+# ifconfig eth0 XXX.XXX.XXX.XXX  netmask 255.255.255.0 broadcast XXX.XXX.X.XXX
+
+Ex. )
+$ ifconfig eth0 192.168.0.100 netmask 255.255.255.0 broadcast 192.168.0.255
+----
+
+* Open a browser and enter "<board IP address>:3000" in the address bar.
+* Authorization for "<board IP address>:3000" will be requested, so allow it.
+* Select "Image Stream -> isp_imx8_image -> image" from the upper left tree and check the box.
+* Viewer is started and press "Streaming" button on the right side of the screen. 
+* Verify that the image appears in the viewer.
+
+Viewer sample
+
+image::SensCord-Viewer.png[]
+
+==== How to save a frame image
+===== The object to save
+* RAW (4032x3040 BayerRGGB)
+* YC (2016x1520 NV16)
+
+===== How to use Postman and SensCord viewer
+* Start the container in accordance with the <<CameraContainerDeploy,Camera Contianer Deployment>> chapter. 
+* Import the following script to Postman. + DeviceSDK-IntegTest-DrvModeFullres.postman_collection.json
+* Run the Refsys board and wait for the camera container to activate.
+* Add script to Collection in Postman and execute it.
+** Make sure that there is no error displayed at each execution step.
+* Activate the SensCord Viewer. + Connect to SensCord Server of Refsys board from PC. Refer to SensCord Viewer and connect to SensCord Viewer on Refsys board from PC.
+
+===== RAW data storage (4032x3040 BayerRGGB)
+* Select "Image Stream -> imx500_image → image" from the upper left tree and check the box.
+* Check that the resolution display in the right area is "4032 x 3040".
+* Start the streaming (screen is not updated when RAW is selected.)
+* Specify the output file path for saved images. If the path is not specified, the file is created into the route directory.
+* Press "Save" button and start the storage.
+* Press "Stop" button and stop the storage.
+* After the data storage is stopped, check the files in the specified folder of the Refsys board.
+
+image::image2022-10-14_10-56-4.png[]
+
+===== YC data storage (2016x1520 NV16)
+* Select "Image Stream -> isp_imx8_image -> image" the upper left tree and check the box.
+* Check that the resolution display in right area is "2016 x 1520".
+* Start the streaming.
+* Specify the output file path. If the path is not specified, the file is created into the route directory.
+* Press "Save" button and start the storage.
+* Press "Stop" button and stop the storage.
+* After the data storage is stopped, check the files in the specified folder of the Refsys board.
+
+image::image2022-10-14_10-56-26.png[]
+
+== API list (host-side)
+
+See a separate document.
