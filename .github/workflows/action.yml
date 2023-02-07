@@ -31,9 +31,9 @@ jobs:
           DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends po4a
           sudo apt install libunicode-linebreak-perl
 
-      - name: make updatepo file
+      - name: update po file
         run: |
-          po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ${{ env.PO_FILE_PATH }} --wrap-po no
+          po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ${{ env.PO_FILE_PATH }} --wrap-po newlines
 
       - name: archive artifacts
         uses: actions/upload-artifact@v3
