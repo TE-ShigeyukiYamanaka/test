@@ -29,7 +29,7 @@ jobs:
       - name: setup po4a
         run: |
           DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends po4a
-          #sudo apt install libunicode-linebreak-perl
+          sudo apt install libunicode-linebreak-perl
 
       - name: make updatepo file
         run: |
