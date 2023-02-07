@@ -13,7 +13,7 @@ on:
 env:
   ARTIFACT_NAME: 'output_test_file'
   BASE_FILE_PATH: './sample.adoc'
-  PO_FILE_PATH: './test2.txt'
+  PO_FILE_PATH: './sample.po'
   
 jobs:
   test:
@@ -33,12 +33,12 @@ jobs:
       - name: make updatepo file
         run: |
           mkdir ./output_test_file
-          po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ./output_test_file/sample.po
+          po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ${{ env.PO_FILE_PATH }}
 
       - name: archive artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: output_test_file
+          path: ${{ env.PO_FILE_PATH }}
           retention-days: 1
         if: ${{ success() }}
