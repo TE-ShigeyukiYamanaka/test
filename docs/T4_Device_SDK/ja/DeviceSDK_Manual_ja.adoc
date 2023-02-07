@@ -1,9 +1,3 @@
-== テスト
-
-テストメッセージ
-
 == SSD接続方法
-
-SSDを設置。
 
 image::NX215B_inside.png[SSD接続方法, width=19000 ]
