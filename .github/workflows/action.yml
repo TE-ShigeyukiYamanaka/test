@@ -33,6 +33,7 @@ jobs:
 
       - name: update po file
         run: |
+          po4a-updatepo -V
           po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ${{ env.PO_FILE_PATH }}
 
       - name: archive artifacts
