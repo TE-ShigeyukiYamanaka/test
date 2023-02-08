@@ -6,7 +6,7 @@ name: "retro-cicdteam_sample: Update po files"
 on:
   push:
     branches: [ 'test/20230206' ]
-    paths: [ 'docs/T4_Device_SDK/ja/DeviceSDK_Manual_ja.adoc' ]
+    #paths: [ 'docs/T4_Device_SDK/ja/DeviceSDK_Manual_ja.adoc' ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,11 +35,12 @@ jobs:
         run: |
           po4a-updatepo -V
           po4a-updatepo -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ${{ env.PO_FILE_PATH }}
-
+          po4a-translate -M utf-8 -f asciidoc -m ${{ env.BASE_FILE_PATH }} -p ${{ env.PO_FILE_PATH }} -l ${{ env.BASE_FILE_PATH }}_en -k 0
+          
       - name: archive artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: ${{ env.PO_FILE_PATH }}
+          path: ${{ env.PO_FILE_PATH }} ${{ env.BASE_FILE_PATH }}_en
           retention-days: 1
         if: ${{ success() }}
