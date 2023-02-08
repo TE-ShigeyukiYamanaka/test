@@ -15,6 +15,9 @@ chapter-label: 1
 
 <<<
 
+==  テスト章
+コメントを追加しました。
+
 ==  はじめに
 本章では、デバイスSDKマニュアルの概要および、使用の前提について説明します。 +
 
@@ -49,7 +52,7 @@ evp device agent
 <<<
 
 [[HardwareConstitution]]
-== Hardware構成
+== ハードウェア構成
 === ハードウェア概要
 SSSが作成しているリファレンスハードウェアの機能概要を以下に示します。 +
 
@@ -97,6 +100,9 @@ image::PXL_20221122_102126703_trim.jpg[width=250]
 image::PXL_20221122_102146831_trim.jpg[width=250]
 
 
+=== 回路図
+回路図については「DeviceSDK_Reference_Hardware_SircuitDiagram.pdf」を参照してください。 +
+
 <<<
 
 == ソフトウェア構成
@@ -137,9 +143,6 @@ image::AITRIOS_CertifiedSystemStreamingSoftwareStack.png[全体構成]
 |IMX500 Comp. [SPL]|Host|Sensorから取得したI.T./O.T./RAW imageデータをClientに提供する（SensCord）
 |eSDK|Host|IMX500 access library
 |===
-
-=== 適当
-章を追加したらどうなるか
 
 <<<
 
