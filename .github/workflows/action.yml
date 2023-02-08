@@ -41,6 +41,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: ${{ env.PO_FILE_PATH }} ${{ env.BASE_FILE_PATH }}_en
+          path: ./docs/T4_Device_SDK
           retention-days: 1
         if: ${{ success() }}
