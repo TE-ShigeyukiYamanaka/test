@@ -1,3 +1,688 @@
-== SSD接続方法
+= image:../AITRIOS-Logo_Blue_w480.png[width="200"] pass:[<br/>] T4 Device SDK Manual pass:[<br/>]image:Draft_Watermark.png[fit=none,pdfwidth=40%] 
+:sectnums:
+:doctype: book
+:sectnumlevels: 3
+:author: Copyright 2022 Sony Semiconductor Solutions Corporation
+:revdate: YYYY - MM - DD
+:revnumber: x.x.x
+:version-label: Version: 
+:toc:
+:toc-title: 目次
+:toclevels: 2
+ifndef::imagesdir[:imagesdir: ../../../images/T4_Device_SDK]
+chapter-label: 1
+:lang: ja
 
-image::NX215B_inside.png[SSD接続方法, width=19000 ]
+<<<
+
+==  はじめに
+本章では、デバイスSDKマニュアルの概要および、使用の前提について説明します。 +
+
+=== 本書の概要
+本書はAITRIOSのデバイスSDKの使い方を記載したマニュアルです。 +
+
+デバイスSDKのベースとなるハードウェアの回路図は以下のドキュメントを参照してください。 +
+「DeviceSDK_Reference_Hardware_SircuitDiagram.pdf」 +
+
+SCSとエッジデバイス間の通信APIは以下のドキュメントを参照してください。 +
+「DeviceSDK_Cloud-Edge_IF.xlsx」
+
+
+=== 関連文書および提供物
+* DeviceSDK_Reference_Hardware_SircuitDiagram.pdf +
+デバイスSDKのベースとなるハードウェアの回路図 +
+* DeviceSDK_Cloud-Edge_IF.xlsx +
+SCSとエッジデバイス間の通信API仕様 +
+* evp-device-agent-1.0.1.zip +
+evp device agent
+* PostManスクリプト
+** Device-Registration.postman_collection.zip
+** Postman_Script.zip
+** DeviceSDK-IntegTest-Util-Module.postman_collection.json
+** DeviceSDK-IntegTest-Setup-Deploy.postman_collection.json
+** @DeviceSDK-IntegTest-Common-Env-LF2.postman_environment.json
+** DeviceSDK-IntegTest-DrvModeFullres.postman_collection.json
+
+=== デバイスSDKとは
+デバイスSDKとはソニーセミコンダクタソリューションズ株式会社（以下 SSS）が作成したAITRIOS規格準拠カメラのリファレンスソフトウェアです。デバイスSDKはSSSが提供しているリファレンスハードウェア上で構築されています。SSSが提供しているリファレンスハードウェアの概要については「<<HardwareConstitution,ハードウェア構成>>」を参照してください。カメラベンダーは、デバイスSDKをベースに開発することで、AITRIOS規格準拠カメラの基本的な機能を短期間に実現することが可能となります。 +
+
+<<<
+
+[[HardwareConstitution]]
+== Hardware構成
+=== ハードウェア概要
+SSSが作成しているリファレンスハードウェアの機能概要を以下に示します。 +
+
+[width="100%",cols="10%,22%,68%",options="header"]
+|===
+2+<|Type|Comment 
+.3+<.<|Key Device
+        |Image sensor|IMX500 4056x3040 pix, 1.55um, 1/2.3’’
+        |Soc|NXP i.MX8M plus +
+             EMMC 32GB / DRAM 6GB
+        |IMX500 ROM|16MB×2
+.8+<.<|I/F
+        |HDMI|Mini HDMI(Inside the cover)
+        |Wi-Fi|802.11b/g/n
+        |Bluetooth|BT5.0
+        |Ethernet|1000 Base-T(PoE), RJ45
+        |USB|USB-A(Host 3.0) +
+             USB-C(Only Device 3.0) (Inside the cover)
+        |UART|3Port (FTDI is on board, IF connector is USB-micro B) (Inside the cover)
+        |Audio In/Out|Mic IN(2ch)
+        |Power supply|USB PD(9, 12, 20V) / PoE(IEEE802.3 af, RJ45)
+.2+<.<|UI
+        |LED|3pcs x bi-color(Green, Red) LED for service +
+             2pcs of single color(Yellow, Green) LED for Ether link
+        |External switch|1 pcs Reset switch for Factory Reset
+|===
+
+<<<
+
+=== ハードウェアの各部名称
+* 後面 +
+
+image::PXL_20221122_102212256_trim.jpg[width=250]
+
+* 右側面 +
+
+image::PXL_20221122_102117758_trim.jpg[width=250]
+
+* 左側面 +
+
+image::PXL_20221122_102126703_trim.jpg[width=250]
+
+* 上面 +
+
+image::PXL_20221122_102146831_trim.jpg[width=250]
+
+
+<<<
+
+== ソフトウェア構成
+本章ではデバイスSDKのソフトウェア構成を示します。 +
+
+=== リファレンスOS
+リファレンスOSとしてNXP社製Yoctoを利用しています。Yoctoについて詳しくはlink:https://www.nxp.com/docs/en/user-guide/IMX_YOCTO_PROJECT_USERS_GUIDE.pdf[「i.MX Yocto Project User's Guide (nxp.com)」]をご覧ください。 +
+
+=== 全体構成
+デバイスSDKではホストソフトウェア上で動くソフトウェアと、コンテナ上で動くソフトウェアで構成されています。 +
+
+image::AITRIOS_CertifiedSystemStreamingSoftwareStack.png[全体構成]
+
+<<<
+
+=== モジュール説明
+デバイスSDKには以下のようなモジュールがあります。 +
+
+[wdith="100%",cols="30%,15%,45%",options="header",]
+|===
+|Component|Location|Responsibility
+|Proxy|Container|SCS Edge AgentとVendor Extension Agentの処理を振り分けるモジュール
+|Edge Agent|Container|SCSからのCommandを配下のApp.に振り分けるモジュール
+|Video Output App|Container|Video Network Streaming Application
+|Video Record App|Container|Record MP4 Video on USB?
+|Image Output App|Container|Output Viewing/Input Tensor image to NFS, SSHFS or blob.
+|Inference Output App.|Container|Output Inference data to MQTT, NFS, SSHFS or blob.
+|One-Shot Image App.|Container|Reply Viewing/Input Tensor image via REST API response.
+|GStreamer|Container|Viewing用のStreaming処理を実施するアプリケーション
+|VideoIF|Container|GStreamerのPath構築などを管理するレイヤ
+|OTA App.|Container|OTA Application.
+|System App.|Container|System maintenance Application.
+|PQA App.|Container|Picture QuAlity Application.
+|Sensor Util App.|Container|Sensor Access Utility Application.
+|Inference Comp.|Container|推論処理結果をApp.に提供する
+|Install App.|Host|Initial Setup (IP Address, NTP, etc...) Application.
+|YC Comp. [SPL]|Host|Sensorから取得したViewingデータをClientに提供する（SensCord）
+|IMX500 Comp. [SPL]|Host|Sensorから取得したI.T./O.T./RAW imageデータをClientに提供する（SensCord）
+|eSDK|Host|IMX500 access library
+|===
+
+=== 適当
+章を追加したらどうなるか
+
+<<<
+
+== デバイスSDKビルド方法
+=== ビルド手順
+==== ビルド実行(ホスト環境) +
+
+. 環境設定を行う
+. ビルドを実行する +
+
+ビルド手順は aitrios-sdk-device-otb-imx8mp-host-sdk の README.md を参照してください。 +
+
+URL: https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-otb-imx8mp-host-sdk
+
+make コマンドの実行後、workspace/build/tmp/deploy/images
+/refsys-imx8mp 以下に下記のファイルが作成されることを確認してください。 +
+
+   ** imx-image-full-refsys-imx8mp.wic.bz2
+   ** imx-boot-refsys-imx8mp-sd.bin-flash_evk
+
+[[RunBuild_Container]]
+==== ビルド実行(コンテナ環境)
+ . 環境設定を行う
+ . ビルドを実行する
+
+ビルド手順は aitrios-sdk-device-otb-sc-container-sdk の README.md を参照してください。
+
+URL: link:https://github.com/SonySemiconductorSolutions/aitrios-sdk-device-otb-sc-container-sdk[]
+
+make コマンドの実行後、workspace/deploy に下記のファイル(Dockerイメージ)が作成されることを確認してください。 +
+
+  *** smartcamera.tar.gz
+
+作成されたイメージは、「<<DockerImageRegistrationProcedure,Dockerイメージの登録手順>>」において EVP Hub へDockerイメージをアップロードするために使用します。 +
+
+<<<
+
+== インストール方法
+[[DockerImageRegistrationProcedure]]
+=== Dockerイメージの登録手順
+==== DockerイメージのEVP Hubへの登録手順
+
+「<<RunBuild_Container,ビルド実行(コンテナ環境)>>」で作成した smartcamera.tar.gz を EVP Hub に登録します。 +
+
+. Dockerイメージをロードする +
++
+....
+  $ docker load -i smartcamera.tar.gz
+....
+
+. Moduleを登録する +
+DockerイメージをEVP Hub にアップロードし、Moduleとして登録してください。 +
+登録方法は下記の手順を参照してください。 +
+//link:https://www.tool.sony.biz/confluence/pages/viewpage.action?pageId=2278155848[Module登録方法 - 2021_SSS_ReferenceSystem - Confluence (sony.biz)] +
+「<<ModuleRegistrationProcedure,モジュール登録方法>>」
+
+. Deploymentを実行する +
+Moduleの登録時に取得した MODULE_ID と MODULE_NAME を使用して Deploymentを設定してください。 +
+Deployment の設定と実行の方法は「<<EvpControlMethod,EVPを使用したデバイス制御方法>>」を参照してください。 +
+
+[[ModuleRegistrationProcedure]]
+==== モジュール登録方法
+. 必要な情報を確認する +
+下記の検証環境の情報を用意してください。
+ .. 使用するコンテナレジストリの情報
+  ... コンテナレジストリのURL (例 : dummy.azurecr.io)
+  ... コンテナレジストリのユーザー名 (例 : dummy_cr_user)
+  ... コンテナレジストリのパスワード (例 : dummy_cr_password)
+ .. EVP Module関連の情報
+ ... Dockerイメージ(例 : dummy_module_image.tar)、またはModuleがローカルDocker Registryに登録済み(例 : dummy_module_image:
+module_version)の環境
+.. 使用するEVP Hubの情報
+ ... EVP HubのURL (例 : https://dummy.cloudapp.azure.com)
+ ... EVP Hubのポート番号 (例 : 443)
+ ... EVP Hubのユーザー名 (例 : dummy_evp_user)
+ ... EVP Hubのパスワード (例 : dummy_evp_password)
+
+. コンテナをアップロードする +
+ ...... 環境に合わせて環境変数を設定する
++
+....
+export DOCKER_REGISTRY="dummy.azurecr.io" ;
+export DOCKER_USER="dummy_cr_user" ;
+export DOCKER_PASSWORD="dummy_cr_password" ;
+export MODULE_BASE_NAME="dummy_module_image" ;
+export MODULE_VERSION="module_version" ;
+export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;
+....
++
+ ...... ModuleのDockerイメージをTarballで入手している場合、ローカルDocker Registryに取り込む +
+ここでは、取り込まれたイメージ名がdummy_module_image:latestだったものとして記載します。
++
+....
+docker load -i dummy_module_image.tar
+....
++
+ ...... ロードしたコンテナにタグを付ける
++
+....
+docker tag dummy_module_image:latest $DOCKER_REGISTRY/$MODULE_IMAGE_NAME
+....
++
+ ...... ACRにログインする
++
+....
+docker login $DOCKER_REGISTRY -u $DOCKER_USER -p $DOCKER_PASSWORD
+....
++
+ ...... コンテナをpushする
++
+....
+docker push $DOCKER_REGISTRY/$MODULE_IMAGE_NAME
+....
+
+. EVP HubにModuleを登録する +
+ ...... 環境に合わせて環境変数を設定する +
++
+....
+export DOCKER_REGISTRY="dummy.azurecr.io" ;
+export DOCKER_USER="dummy_cr_user" ;
+export DOCKER_PASSWORD="dummy_cr_password" ;
+export MODULE_BASE_NAME="dummy_module_image" ;
+export MODULE_VERSION="module_version" ;
+export MODULE_IMAGE_NAME=${MODULE_BASE_NAME}:${MODULE_VERSION} ;
+export MODULE_NAME=${MODULE_BASE_NAME}_${MODULE_VERSION} ;
+export EVPHUB_URL="https://dummy.cloudapp.azure.com:443"
+export EVPHUB_USER="dummy_evp_user"
+export EVPHUB_PASS="dummy_evp_password"
+export MODULE_HASH="0000000000000000000000000000000000000000";
+....
++
+ ...... EVP Hubにログインしトークンを取得する
++
+....
+export AUTHTOKEN=$( \
+curl -s --location --request POST "$EVPHUB_URL/api/auth/login" \
+--header 'Content-Type: "application/json"' \
+--header 'Accept: "application/json"' \
+--data-raw '{ "username":"'"$EVPHUB_USER"'", "password":"'"$EVPHUB_PASS"'" }' \
+  | tee /dev/stderr | jq -r '.token' )
+....
++
+ ...... EVP HubにModuleを登録し、Module IDを取得する
++
+....
+export MODULE_ID=$( \
+curl --location --request POST "$EVPHUB_URL/api/evp/v1/module" \
+--header 'Content-Type: application/json' \
+--header "X-Authorization: Bearer: $AUTHTOKEN" \
+--data-raw '{"name": "'"$MODULE_NAME"\
+'","type": "Linux modules","resourceUrl":"'\
+"$DOCKER_REGISTRY"'/'"$MODULE_IMAGE_NAME"\
+'","entryPoint": "main","hash": "'"$MODULE_HASH"'"}' \
+  | tee /dev/stderr | jq -r '.id.id' )
+....
++
+MODULE_ID、MODULE_NAMEはモジュールのDeploy時に必要になるため、メモしておいてください。 +
++
+[NOTE]
+====
+Postmanを使用する場合 +
+
+. 下記のスクリプトをPostmanにImportする +
+Muduleの作成/削除スクリプト：DeviceSDK-IntegTest-Util-Module.postman_collection.json +
+
+. PostmanのEnvironmentの情報を、コンテナレジストリ等の環境に合わせて更新する +
+CollectionsのDeviceSDK-IntegTest-Util-Moduleで下記を実行してください。 +
+
+* Get Tokenを選択、画面右上のSendボタンをクリック +
+* Create Moduleを選択、画面右上のSendボタンをクリック
+====
+
+
+=== 基板の立ち上げ手順
+==== イメージの書き込み手順 (Windows上)
+. sdk_image フォルダを作成する +
+. 下記のページから uuu.exe をダウンロードし、sdk_image フォルダに格納する +
+https://github.com/NXPmicro/mfgtools/releases
+
+. 下記のビルド成果物をsdk_imageフォルダに格納する +
+ ** imx-image-full-refsys-imx8mp.wic.bz2
+ ** imx-boot-refsys-imx8mp-sd.bin-flash_evk
+
+. 基板を配線する +
+基板の配線と、BootSWの設定を行ってください。 +
+
+  ...... USB Type-CにUSBケーブルを挿入し、PCと接続する +
+  ...... Boot SWをONにする +
+         給電用USB差し込み口とは逆側に倒してください。 +
+  ...... 給電用USB Type-Cを電源に接続する +
+         USBを接続すると基板の電源がONになります。 +
++
+image::ImageWritingProcedure_BoardWiring.png[基板配線] 
++
+
+. 基板にイメージを書き込む +
++
+コマンドプロンプトを立ち上げ、sdk_imageフォルダに移動して下記のコマンドを実行してください。 +
++
+....
+ .\uuu.exe -b emmc_all ..\imx-boot-refsys-imx8mp-sd.bin-flash_evk ..\imx-image-full-refsys-imx8mp.wic.bz2
+....
++
+書き込みが終わると以下のような表示になるので、基板の電源を一度切ってください。 +
++
+....
+ uuu (Universal Update Utility) for nxp imx chips -- libuuu_1.4.107-14-g519c261
+ Success 1    Failure 0
+ 
+ 
+ 1:141    8/ 8 [Done                                  ] FB: done
+ 1:21     1/ 1 [=================99%================> ] boot-refsys-imx8mp-sd.
+....
+
+==== 基板の起動手順
+. シリアルコンソールを接続する +
+ ...... USB SerialにUSBケーブルを挿入し、PCと接続する +
+ ...... Teratermを立ち上げ、接続先にシリアルのポートの3番目を選択してOKを押す +
+        先頭がCOM11の場合、COM13を選択します。 +
+ ...... メニューバーの設定->シリアルポートの順に選択し、スピードの項目を115200に変更する +
+
+. 基板を立ち上げる +
+ ...... Boot SWをOFFにする +
+        給電用USB差し込み口側に倒してください。
+ ...... 給電用USB Type-Cを電源に接続する +
+        USBを接続すると基板の電源がONになります。 +
+
+. ログインする
+ ...... 電源の投入後、シリアルコンソールに refsys-imx8mp login: が表示されることを確認する +
+ ...... ユーザー名にrootを入力し、Enterを押す +
+  パスワードは不要です。 +
+ ...... 最終ログイン日時が表示され、プロンプトの応答が root@refsys-imx8mp:~# となっていることを確認する +
+
+<<<
+
+== 各種設定方法
+
+=== EVP Hubの接続の準備 
+下記の項目について確認します。
+
+==== 使用するEVP Hubの情報
+* EVP HubのMQTT URL (例 : mqtt-dummy.cloudapp.azure.com)
+* EVP HubのMQTTポート番号 (例 : 1111)
+* EVP Hubの証明書ファイル (mqttserver.pub.pem) 
+
+NOTE: 詳細は「<<CreateServerCertificates,サーバー証明書の作成>>」に記載しています。
+
+==== 使用するコンテナレジストリの情報
+* コンテナレジストリのURL (例 : dummy.azurecr.io)
+* コンテナレジストリへのログイン Username (例 : dummy_cr_user)
+* コンテナレジストリのパスワード (例 : dummy_cr_password)
+
+==== 証明書
+* クライアント証明書(mqttclient.nopass.pem) 
+
+NOTE: 詳細は「<<CreateClientCertificates,クライアント証明書の作成>>」に記載しています。
+
+=== EVP Hubに接続するための証明書の準備
+
+[[CreateClientCertificates]]
+==== クライアント証明書の作成 ( cert.pem & mqttclient.nopass.pem ) 
+下記のコマンドを実行します。
+
+....
+$ unzip evp-device-agent-1.0.1.zip
+$ cd evp-device-agent-1.0.1/evp_agent/test/tests
+$ ./simplest-cert.sh
+$ cat key.pem cert.pem > mqttclient.nopass.pem
+....
+
+[[CreateServerCertificates]]
+==== サーバー証明書の作成 (mqttserver.pub.pem ) 
+下記の記載の内容をファイルに保存し`mqttserver.pub.pem`の名前で作成します。
+
+.mqttserver.pub.pem
+----
+-----BEGIN CERTIFICATE-----
+MIID/TCCAuWgAwIBAgIQLU8JQOB/adPfdboTqUHJrzANBgkqhkiG9w0BAQsFADB+
+MQswCQYDVQQGEwJKUDElMCMGA1UEChMcU29ueSBTZW1pY29uZHVjdG9yIFNvbHV0
+aW9uczEqMCgGA1UECxMhU3RhZ2luZyBFVlAgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
+MRwwGgYDVQQDExNTdGFnaW5nIEVWUCBSb290IENBMB4XDTIxMDExMzE5MzEwMloX
+DTI2MDExMjE5MzEwMlowfjELMAkGA1UEBhMCSlAxJTAjBgNVBAoTHFNvbnkgU2Vt
+aWNvbmR1Y3RvciBTb2x1dGlvbnMxKjAoBgNVBAsTIVN0YWdpbmcgRVZQIENlcnRp
+ZmljYXRlIEF1dGhvcml0eTEcMBoGA1UEAxMTU3RhZ2luZyBFVlAgUm9vdCBDQTCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKS5j/5dvgl0a86TwGyW4G+n
+OIeXt8ASmUvSpAmAnfdpmTOeDJzCNVVCYlZc1chicGBP7xOgwL3r54P6RmeXTUNU
+M0wx6FXT7KKBZLU/WfrxDpxCw8c5fEUdDNod0vJB96mwNI4SJFsEKBmWewdjrRCa
+BouTxN5A0LCt4CqKDfdQIE0Cb5lV13SepX9Um+EyHPGv3yfqvfTsFCChozz3DGS9
+XyO68Vj/or3zh7peAl8VE4B7EufPYkl7xt2F3mt3YGTFWPzZGlVmYHKSjStG08e2
+X+h9LQY4OCYfTZn8nT56Z+9Mh9eKibLvH+qHhJWp3j8vzyHaqLGrBhB6XjHr+W0C
+AwEAAaN3MHUwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0O
+BBYEFDRVYKu5QaDtz7B4zjLZhZ1CnFOYMDMGA1UdHwQsMCowKKAmoCSGImh0dHBz
+Oi8vZXZwLXN0YWdpbmcubWlkb2t1cmEuanAvY2EwDQYJKoZIhvcNAQELBQADggEB
+AGRKUDCv3geJw4tjTULxPr6GzOkSt4HetrFJsOUSt6uItiFVBEuSNsDpBHJ9zz8J
++PU1O1g44JtyBEDfOKiat6D9JVvDEZ7h6+kUYMiJtu+sjDJOJQLH0JqlJ7MWfrQQ
+b5ifuXqQd+fAjqqE/kzg84I1wlsJSJu371feMpN5u1QCwpvixllZx1OmEIxS5feL
+wCUKHiuJvDcmJpkvBsb8Nl0uUJygxKQ2ARMKBJH9SXLK/zUDPWMdU3V/IZRArykJ
+xxqx46i0/xaNkXTD5SPM6qPTeGCdFyZfQzEigkhuzlgIpAKQZFvdauRjbLZgSMtA
+rCzMXa5C/VW9ne+vETEzJEg=
+-----END CERTIFICATE-----
+----
+
+=== 基板の初期設定手順
+下記の初期設定ファイルを準備します。
+
+* EVP Runtimeの設定ファイル (evp_setup_info.txt)
+
+.evp_setup_info.txt
+----
+Address:mqtt-dummy.cloudapp.azure.com
+Port:1111
+----
+
+* コンテナレジストリの設定ファイル (docker_setup_info.txt)
+
+.docker_setup_info.txt
+----
+Registry:dummy.azurecr.io
+User:dummy_cr_user
+Password:dummy_evp_password
+----
+
+* mqttclient.nopass.pem
+* mqttserver.pub.pem
+
+=== IPアドレスの確認 
+下記のコマンドをデバイスのシリアルコンソールから実行します。
+
+....
+ip -o -4 a | grep eth0
+....
+        
+[NOTE]
+====
+シリアルコンソールが使用できない場合の対応方法として、
+接続しているLAN内のDHCPサーバーのデバイス接続ログからIPアドレスを特定する方法があります。
+====
+
+=== デバイスと同じネットワークのPCからSSH接続を行い、初期設定ファイルを配置します。
+
+[NOTE]
+====
+SSHクライアントPCが新しいopensshを使用している場合（例 Ubuntu 22.04）、RSA SHA-1鍵の使用を許可する必要があります。
+この設定は下記のコマンドで実行します。
+
+....
+sudo echo "HostKeyAlgorithms ssh-dss,ssh-rsa" >> /etc/ssh/ssh_config
+....
+====
+
+下記のコマンドを実行してPCからデバイスに初期設定ファイルを送信します。
+
+....
+$ cd /path/to/initialize_files/
+$ scp mqttserver.pub.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/
+$ scp evp_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/
+$ scp docker_setup_info.txt root@192.168.1.10:/misc/smartcamera/evp_info/
+$ scp mqttclient*.nopass.pem root@192.168.1.10:/misc/smartcamera/evp_info/cert/mqttclient.nopass.pem
+....
+
+=== デバイスの再起動
+
+rebootコマンドを実行するなどしてデバイスを再起動すると、EVP Runtimeが起動しEVP Hubとの接続が実行されます。
+
+<<<
+
+[[EvpControlMethod]]
+== EVPを使用したデバイス制御方法
+
+EVP_HUBに接続されたデバイスの制御はEVP_HUBにREST APIのコマンドを送信して行います。 + 
+REST APIの制御ツールであるPostmanを使用した制御方法を記載します。
+
+=== デバイスの登録
+
+==== PostManのスクリプトのインポート
+Device-Registration.postman_collection.zip を取得してインポートします。
+
+==== 環境変数の設定
+下表の環境変数を"@DeviceRegistration environments."の"INITIAL VALUE"と"CURRENT VALUE" に設定します。
+
+[wdith="100%",cols="10%,15%",options="header",]
+|===
+|変数名|値 
+|EVP_SERVER|EVP HUBのURL 
+|USERNAME|EVP HUBログインのためのユーザー名 
+|PASSWORD|EVP HUBログインのためのパスワード 
+|DEVICE_NAME|任意の名前 
+|===
+
+==== 証明書の設定
+cert.pemの値を"/api/evp/v1/device/credentials"コマンドの"credentialsValue"に設定します。
+
+==== 登録の実行
+"/api/evp/v1/device/credentials"コマンドのRUNを実行しデバイスの登録されたら、実行結果が"200 OK"になります。
+
+image::Result.jpg[デバイス登録結果] 
+
+=== カメラコンテナのデプロイ
+[[CameraContainerDeploy]]
+
+==== PostManのスクリプトのインポート
+下記のjsonファイルをインポートします。
+
+* DeviceSDK-IntegTest-Util-Module.postman_collection.json
+* DeviceSDK-IntegTest-Setup-Deploy.postman_collection.json
+* @DeviceSDK-IntegTest-Common-Env-LF2.postman_environment.json
+
+==== 環境変数の設定
+下記の環境変数を"@DeviceSDK-IntegTest-Common-Env-LF2"の"INITIAL VALUE"と"CURRENT VALUE" に設定します。
+
+[wdith="100%",cols="10%,15%",options="header",]
+|===
+|変数名|値 
+|EVP_SERVER|EVP HUBのURL 
+|USERNAME|EVP HUBログインのためのユーザー名 
+|PASSWORD|EVP HUBログインのためのパスワード 
+|MODULE_NAME|任意の名前 
+|MODULE_URL|前の手順で登録したモジュールのURL + 
+例 : dummy.azurecr.io/dummy_module_image:module_version 
+|DEVICE_NAME|任意の名前 
+|INSTANCE_NAME|任意の名前 
+|===
+
+==== デプロイの実行
+下記の順にPostManのcollectionを実行します。
+
+. "DeviceSDK-IntegTest-Util-Module"の"Get Token"の"SEND"を実行します。
+. "DeviceSDK-IntegTest-Util-Module"の"Create Module"の"SEND"を実行します。
+. "DeviceSDK-IntegTest-Setup-Deploy"全体の"RUN"を実行します。
+
+==== 実行結果の確認
+モジュールのデプロイに成功すると、下記の様に2個のコンテナが実行されます。
+
+image::image2022-11-2_22-9-51.png[デプロイ実行結果] 
+
+=== サンプルアプリケーションの実行
+==== テストスクリプト
+
+下記のzipファイルを解凍し、jsonファイルをPostManにインポートします。
+
+* Postman_Script.zip
+
+==== テストスクリプトの内容
+* DeviceSDK-IntegTest-GetState.postman_collection.json + 
+Get-Stateを行うテストスクリプトです。
+
+* DeviceSDK-IntegTest-StartStopUploadInference.postman_collection.json + 
+"StartUploadInference"/"StopUploadInference"コマンドを実行し、 + 
+推論データの送信を開始・停止するためのテストスクリプトです。
+** 出力先ディレクトリは"/misc/smartcamera/dnn_out"になります。
+テスト前にディレクトリを作る必要があります。
+* DeviceSDK-IntegTest-StreamingSetup.postman_collection.json + 
+"StreamingSetup"コマンドを実行しストリームの送信を開始するテストスクリプト
+テストスクリプト内のIPアドレスはテスト前にターゲットデバイスのIPアドレスに変更する必要があります。 + 
+下図のハイライトを参照
+
+image::image2022-10-4_10-55-22.png[] 
+
+VLC media playerでストリームを受信するために使用するネットワーク環境に合わせたURLアドレスを設定します。 + 
+設定メニュー : Media menu -> Open Network Stream -> Network -> Network Protocol +
+rtsp://root:root@192.168.1.xxx:554/unicast/stream
+
+* DeviceSDK-IntegTest-ConfigState.postman_collection.json + 
+Config&Stateを実行するテストスクリプトです。(パラメータテスト)
+
+===== 使用方法
+* "Collections"のサーチパッド(左のスライドバー)をクリックします。
+* "Import"ボタンをクリックし、jsonファイルをjsonウインドウにドラッグしてインポートします。
+* "Collections"にテストスクリプトが表示されるので、"Collections"のスクリプトをクリックします。
+
+image::Run_Inport_En.jpg[] 
+
+* 右上に表示される"Run"ボタンをクリックし、次に表示される"RuneviceSDK-xxxxx"ボタン(青)をクリックしてテストスクリプトを実行します。
+* すべての実行結果が"Pass"となれば、テストは完了となります。
+もしエラーが発生していたら、"FAILED"の赤色の実行結果メッセージが表示されます。
+
+===== テストスクリプトの補足
+* ダイレクトコマンドのテストの場合、実行結果の成否はレスポンスのJSONデータのキー(Result)・値(Success)で判定します。
+* config&stateコマンドのテストの場合、判定はコンフィギュレーションのパラメータとGet-Stateによるパラメータを比較して行います。
+* 判定条件は、テストスクリプトの"GET"メソッドの"Tests"パートに記載されています。
+
+==== SensCord Viewer
+* LANポートにLANケーブルを挿入し、ネットワーク上のPCと接続可能な状態にします。
+* IPアドレスを設定します。
+
+.eth0
+----
+# ifconfig eth0 XXX.XXX.XXX.XXX  netmask 255.255.255.0 broadcast XXX.XXX.X.XXX
+
+Ex. )
+$ ifconfig eth0 192.168.0.100 netmask 255.255.255.0 broadcast 192.168.0.255
+----
+
+* ブラウザを開きアドレスバーに"<board IP address>:3000"を入力します。
+* "<board IP address>:3000"は権限を求めてくるので、許可を行います。
+* 左上のツリーから"Image Stream -> isp_imx8_image -> image"をチェックします。
+* ビューワーがスタートするので、画面の右にある"Streaming"ボタンを押す。
+* ビューワーに画像が表示されるのを確認します。
+
+Viewer sample
+
+image::SensCord-Viewer.png[] 
+
+==== フレーム画像の保存方法
+===== 保存対象
+* RAW (4032x3040 BayerRGGB)
+* YC  (2016x1520 NV16)
+
+===== Postman と SensCord viewerの使用方法
+* <<CameraContainerDeploy,カメラコンテナのデプロイ>>の章に従って、コンテナを立ち上げる。
+* 下記のスクリプトをPostmanにインポートします。
+DeviceSDK-IntegTest-DrvModeFullres.postman_collection.json
+* Refsys基板を動作させ、カメラコンテナが起動するのを待ちます。
+* PostmanでCollectionにスクリプトを追加し実行します。
+** このとき、各実行ステップでエラーが表示されないことを確認します。
+* SensCord Viewerを起動します。
+PCからRefsys基板のSensCord Serverに接続します。
+SensCord Viewerを参照し、PCからRefsys board基板上のSensCord Viewerに接続します。
+
+===== RAWデータの保存 (4032x3040 BayerRGGB)
+* 画面左のツリーの"Image Stream -> imx500_image → image"にチェックを付けます。
+* 右のエリアの解像度表示が"4032 x 3040"になっていることを確認します。
+* ストリーミングを開始する( RAWが選択されているときは画面は更新されない )
+* 保存画像の出力先ファイルパスを設定します。
+パスが設定されていないときは、ルートディレクトリに作成される。
+* 保存ボタンを押し保存を開始します。
+* 停止ボタンを押し保存を停止します。
+* 保存が停止した後にRefsys基板の指定したフォルダのファイルを確認します。
+
+image::image2022-10-14_10-56-4.png[]
+
+===== YCデータの保存 (2016x1520 NV16)
+* 画面左のツリーの"Image Stream -> isp_imx8_image → image"にチェックを付けます。
+* 右のエリアの解像度表示が"2016 x 1520"になっていることを確認します。
+* ストリーミングを開始します。
+* 出力ファイルパスを設定します。
+パスが設定されていないときは、ルートディレクトリに作成される。
+* 保存ボタンを押し保存を開始します。
+* 停止ボタンを押し保存を停止します。
+* 保存が停止した後にRefsys基板の指定したフォルダのファイルを確認します。
+
+image::image2022-10-14_10-56-26.png[]
+
+== APIリスト(ホスト側)
+
+別紙参照
