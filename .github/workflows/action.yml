@@ -6,7 +6,7 @@ name: "retro-cicdteam_sample: Update po files"
 on:
   push:
     branches: [ 'test/20230206' ]
-    #paths: [ 'docs/T4_Device_SDK/ja/DeviceSDK_Manual_ja.adoc' ]
+    paths: [ 'docs/T4_Device_SDK/ja/DeviceSDK_Manual_ja.adoc' ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,5 +40,5 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: ${{ env.PO_FILE_PATH }}
-          retention-days: 10
+          retention-days: 1
         if: ${{ success() }}
