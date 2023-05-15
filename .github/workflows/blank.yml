@@ -24,5 +24,4 @@ jobs:
     steps:
       # Runs a single command using the runners shell
         - run: |
-            sleep 30
             echo Hello, world!
