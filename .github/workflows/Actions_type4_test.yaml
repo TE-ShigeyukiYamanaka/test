@@ -39,31 +39,5 @@ jobs:
       - uses: actions/checkout@v1
       - name: Setup and Test
         id: repeat_deploy_test_setup_and_execute
-        continue-on-error: true   # エラーでも処理を継続
-        # 開始トリガの表示
-        # scpでターゲットデバイスからパラメータファイルをダウンロード
-        # dockerコンテナ でnodejsのイメージを指定して実行、終了時にコンテナを削除
-        # dockerコンテナにNewmanをインストール
-        # dockerコンテナでデプロイ反復試験用スクリプトを実行
-        # dockerコンテナを停止
         run: |
-          echo "input_event= $TARGET_DEVICE"
-          #scp -r ${TARGET_DEVICE}:~/repeat_deploy_actions_type4/* $PWD/repeat_deploy_actions_type4
-          #mkdir $PWD/repeat_deploy_actions_type4/log
-          #bash ./repeat_deploy_actions_type4/src/ActionsRepeatDeployTestType4.sh ${REPEAT_NUM} > ./repeat_deploy_actions_type4/log/RepeatDeployTestType4_$(date +%y%m%d%H%M).log 2>&1
-      - name: Error Handling
-        # エラー発生時、デバイス上のコンテナを停止する
-        if: ${{ steps.repeat_deploy_test_setup_and_execute.outcome == 'failure' }}
-        run: |
-          echo -n "\"Setup and Test\" : "
-          echo ${{steps.repeat_deploy_test_setup_and_execute.outcome}}
-          ssh ${TARGET_DEVICE} "docker stop smacam"
-          exit 1
-      - name: Generate Artifact of RepeatDeployTestType4 Logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: repeat_deploy_actions_type4_${{ github.run_id }}
-          path: ./repeat_deploy_actions_type4/log
-          # path: ./repeat_deploy_actions_type4/repeat_deploy_actions_type4_${{ github.run_id }}.tgz
-          retention-days: 5
-        if: ${{ always() }}
+            echo Hello, world!
