@@ -30,9 +30,9 @@ env:
 jobs:
   integration:
     # 開始トリガの確認
-    if: ${{ github.event.inputs.trigger }} != ''
+    if: ${{ github.event.inputs.trigger }} != '' && ${{ github.event.inputs.environment1 }} != ''
     # 実行環境の設定
-    name: Type4Test${{ github.event.inputs.environment1 }}
+    name: Type4Test ${{ github.event.inputs.environment1 }}
     #runs-on: [ self-hosted, Retro-EB-Nano-10 ]
     runs-on: ubuntu-latest
     steps:
