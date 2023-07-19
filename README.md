@@ -28,7 +28,8 @@ ws_discovery_ddcl_test
 │  └─seq
 │
 └─script
-   ├─prm
-   └─seq
-        seq_001_initialize_normal.bat
+    ├─prm
+    │   prm_xxx_xxxxxxxxx.bat
+    └─seq
+        seq_xxx_xxxxxxxxx.bat
 ```
