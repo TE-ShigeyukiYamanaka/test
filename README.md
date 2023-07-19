@@ -9,8 +9,8 @@ ws_discovery_ddcl_test
 │  └─seq          # シーケンステストの実行ログ等を格納
 │
 └─script
-    ├─prm         # パラメータテストのスクリプトを格納
-    └─seq         # シーケンステストのスクリプトを格納
+   ├─prm          # パラメータテストのスクリプトを格納
+   └─seq          # シーケンステストのスクリプトを格納
 ```
 
 ## 環境準備
@@ -28,8 +28,7 @@ ws_discovery_ddcl_test
 │  └─seq
 │
 └─script
-    ├─prm
-    └─seq
+   ├─prm
+   └─seq
         seq_001_initialize_normal.bat
-
 ```
