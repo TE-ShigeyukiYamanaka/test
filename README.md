@@ -5,8 +5,8 @@ T3 WS-Dのテストケースの自動化を行う。
 ```bash
 ws_discovery_ddcl_test
 ├─log
-│  ├─prm         # パラメータテストの実行ログ等を格納
-│  └─seq         # シーケンステストの実行ログ等を格納
+│  ├─prm          # パラメータテストの実行ログ等を格納
+│  └─seq          # シーケンステストの実行ログ等を格納
 │
 └─script
     ├─prm         # パラメータテストのスクリプトを格納
@@ -30,6 +30,6 @@ ws_discovery_ddcl_test
 └─script
     ├─prm
     └─seq
-        seq_01_initialize_normal.bat
+        seq_001_initialize_normal.bat
 
 ```
