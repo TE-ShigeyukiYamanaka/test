@@ -14,6 +14,7 @@ ws_discovery_ddcl_test
 └─script
     │  setting.txt          # 共通環境変数設定ファイル
     │  t3_connect.ttl       # WS-D自動起動マクロ
+    │  t3_memory_check.vbs  # T3メモリ使用量取得スクリプト
     │
     ├─prm                   # パラメータテスト(初期化、デバイス検索)のスクリプトを格納
     ├─seq                   # シーケンステストのスクリプトを格納
@@ -24,8 +25,8 @@ ws_discovery_ddcl_test
 - Tera Termをインストールする。  
 - DDCLサンプルアプリケーション（DDCL_UserSample.exe等）を任意のフォルダに格納する。  
 - DDCLサンプルアプリケーションを配置したフォルダに本リポジトリのフォルダを格納する。  
-- setting.txtは環境・要件に合わせて修正する。  
-- t3_connect.ttlの接続先ポート等は環境に合わせて修正する。  
+- setting.txt は環境に合わせて修正する。  
+- t3_connect.ttl の接続先ポート等は環境に合わせて修正する。  
 
 ```bash
 任意のディレクトリ
@@ -42,6 +43,7 @@ ws_discovery_ddcl_test
 └─script
     │  setting.txt
     │  t3_connect.ttl
+    │  t3_memory_check.vbs
     │
     ├─prm
     │   prm_xxx_xxxxxxxxx.bat
